@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="notice">
+    <select id="noticeList" resultType="kr.co.haebop.domain.Notice">
+        select * from Notice
+    </select>
+
+    <insert id="noticeInsert">
+        insert into notice values (default,#{title}, #{content},'admin',default,default)
+    </insert>
+
+    <delete id="noticeDelete">
+        delete from notice where seq=#{seq}
+    </delete>
+
+    <select id="noticeDetail" resultType="kr.co.haebop.domain.Notice">
+        select * from notice where seq=#{seq}
+    </select>
+
+    <update id="countUp">
+        update notice set title=#{title}, content=#{content} where seq=#{seq}
+    </update>
+
+
+</mapper>
