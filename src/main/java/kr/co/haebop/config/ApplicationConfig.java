@@ -1,13 +1,7 @@
 package kr.co.haebop.config;
 
-import kr.co.haebop.repository.NoticeRepository;
-import kr.co.haebop.repository.NoticeRepositoryImpl;
-import kr.co.haebop.repository.TestRepository;
-import kr.co.haebop.repository.TestRepositoryImpl;
-import kr.co.haebop.service.NoticeService;
-import kr.co.haebop.service.NoticeServiceImpl;
-import kr.co.haebop.service.TestService;
-import kr.co.haebop.service.TestServiceImpl;
+import kr.co.haebop.repository.*;
+import kr.co.haebop.service.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -24,6 +18,10 @@ public class ApplicationConfig {
     public NoticeService noticeService() {return new NoticeServiceImpl();}
     @Bean
     public NoticeRepository noticeRepository() { return new NoticeRepositoryImpl();}
+    @Bean
+    public UserService userService() {return new UserServiceImpl();}
+    @Bean
+    public UserRepository userRepository() { return new UserRepositoryImpl();}
 
 }
 

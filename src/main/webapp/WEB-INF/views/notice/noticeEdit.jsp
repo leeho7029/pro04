@@ -20,13 +20,14 @@
 <!-- 헤더 영역 끝 -->
 
 <!-- 배너 영역 시작 -->
+<br>
 <section id="breadcrumbs" class="breadcrumbs">
     <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
             <h2>공지사항 수정하기</h2>
             <ol>
-                <li><a href="../index.jsp">Home</a></li>
+                <li><a href="${path}">Home</a></li>
                 <li>공지사항</li>
             </ol>
         </div>
@@ -37,7 +38,7 @@
 <!-- 공지사항 수정하기 시작 -->
 <div class="content" id="content" style="margin-top: 100px;">
     <div class="row column text-center">
-        <div class="container">
+        <div class="container" style="width: 80%">
             <form action="${path }/notice/edit.do" method="post">
                 <div class="row column text-center">
                     <div class="container">

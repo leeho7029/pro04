@@ -20,13 +20,14 @@
 <!-- 헤더 영역 끝 -->
 
 <!-- 배너 영역 시작 -->
+<br>
 <section id="breadcrumbs" class="breadcrumbs">
     <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
             <h2>공지사항 상세보기</h2>
             <ol>
-                <li><a href="../index.jsp">Home</a></li>
+                <li><a href="${path}">Home</a></li>
                 <li>공지사항</li>
             </ol>
         </div>
@@ -38,7 +39,7 @@
 <div class="content" id="content" style="margin-top: 100px;">
     <div class="row column text-center">
         <div class="container">
-            <table id="table" style="margin-left: 300px">
+            <table class="table" id="table" style="max-width: 1350px; margin-left: 275px;">
                 <tbody>
                 <tr style="border-top: solid grey 1px;">
                     <td style="font-weight: bold; font-size: 30px;">${notice.title }</td><br>

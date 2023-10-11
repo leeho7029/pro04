@@ -22,13 +22,13 @@
 <!-- 헤더 영역 끝 -->
 
 <!-- 배너 영역 시작 -->
+<br>
 <section id="breadcrumbs" class="breadcrumbs">
     <div class="container">
-
         <div class="d-flex justify-content-between align-items-center">
             <h2>공지사항</h2>
             <ol>
-                <li><a href="../index.jsp">Home</a></li>
+                <li><a href="${path}">Home</a></li>
                 <li>공지사항</li>
             </ol>
         </div>
@@ -40,8 +40,13 @@
 <div class="content" id="content" style="margin-top: 20px;">
     <div class="row column text-center">
         <br>
-        <div class="container">
+        <div class="container" style="width: 80%">
                 <%--자료실 --%>
+<%--                    <c:if test='${sid eq "admin"}'>--%>
+                        <div class="button-group" style="float:right;">
+                            <a class="bi-menu-button" style="font-size: 19px" href="${path }/notice/insert.do">글쓰기</a>
+                        </div>
+<%--                    </c:if>--%>
                 <table class="table" id="notice-table">
                     <thead>
                     <tr>
