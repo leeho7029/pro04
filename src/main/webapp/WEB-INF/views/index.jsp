@@ -32,10 +32,7 @@
             <div class="row content">
                 <div class="col-lg-6">
                     <h2>"어제보다 나은 내일을 함께 만들어가는 곳"</h2> <br>
-                    <h2>"수많은 지식과 경험, 열정이 꽃피는 곳"
-                        </h2>
-                    <br>
-                    <h3>"여러분들과 함께 합니다"</h3>
+                    <h2>"수많은 지식과 경험, 열정이 꽃피는 곳"</h2>
                 </div>
                 <div class="col-lg-6 pt-4 pt-lg-0">
                     <p>
@@ -121,22 +118,22 @@
                 <div class="col-md-6 mt-4 mt-md-0">
                     <div class="icon-box">
                         <i class="bi bi-binoculars"></i>
-                        <h4><a href="#">목표달성시 보상</a></h4>
-                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                        <h4><a href="#">학생에게 집중</a></h4>
+                        <p>언제나 학생들을 지켜보고 관리합니다</p>
                     </div>
                 </div>
                 <div class="col-md-6 mt-4 mt-md-0">
                     <div class="icon-box">
                         <i class="bi bi-brightness-high"></i>
-                        <h4><a href="#">운동</a></h4>
-                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+                        <h4><a href="#">24시간 운영</a></h4>
+                        <p>언제든지 이용가능하도록 운영중입니다.</p>
                     </div>
                 </div>
                 <div class="col-md-6 mt-4 mt-md-0">
                     <div class="icon-box">
                         <i class="bi bi-calendar4-week"></i>
                         <h4><a href="#">학습 스케줄관리</a></h4>
-                        <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
+                        <p>개개인의 학습 스케줄을 관리해줍니다.</p>
                     </div>
                 </div>
             </div>

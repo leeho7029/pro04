@@ -29,7 +29,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User loginCheck(String id) throws Exception {
-        return sqlSession.selectOne("user.logincheck",id);
+        return sqlSession.selectOne("user.loginCheck",id);
     }
 
     @Override

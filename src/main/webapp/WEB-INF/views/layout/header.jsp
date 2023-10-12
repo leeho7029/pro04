@@ -11,12 +11,12 @@
         <nav id="navbar" class="navbar">
             <ul>
                 <li><a href="${path}" class="active">Home</a></li>
-                <li><a href="about.html">회사소개</a></li>
+                <li><a href="${path}/intro/list.do">회사소개</a></li>
                 <li><a href="${path}/notice/list.do">공지사항</a></li>
                 <li class="dropdown"><a href="#"><span>게시판</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
-                        <li><a href="#">자료실</a></li>
-                        <li><a href="#">커뮤니티</a></li>
+                        <li><a href="${path}/fileboard/list.do">자료실</a></li>
+                        <li><a href="${path}/community/list.do">커뮤니티</a></li>
                         <li class="dropdown"><a href="#"><span>질문</span> <i class="bi bi-chevron-right"></i></a>
                             <ul>
                                 <li><a href="#">QnA</a></li>
@@ -33,8 +33,20 @@
                     </ul>
                 </li>
 
+            <c:if test="${sid eq null}">
                 <li><a href="${path}/user/login.do" class="getstarted">로그인</a></li>
                 <li><a href="${path}/user/term.do" class="btn-get-started">회원가입</a></li>
+            </c:if>
+                <c:if test="${sid ne null and sid ne 'admin'}">
+                    <li style="margin-left: 40px">${sid}님 환영합니다</li>
+                    <li><a href="${path}/user/logout.do" class="getstarted">로그아웃</a></li>
+                    <li><a href="${path}/user/mypage.do" class="btn-get-started">마이페이지</a></li>
+                </c:if>
+                <c:if test="${sid ne null and sid eq 'admin'}">
+                    <li><a href="${path}/admin/adminlist.do" class="getstarted">관리자페이지</a></li>
+                    <li><a href="${path}/user/logout.do" class="btn-get-started">로그아웃</a></li>
+                </c:if>
+
             </ul>
         </nav><!-- .navbar -->
 

@@ -70,7 +70,7 @@
     </div>
 </div>
 <!-- 공지사항 글 상세보기 끝 -->
-
+<br><br>
 <!-- 푸터 영영 시작 -->
 <jsp:include page="../layout/footer.jsp"/>
 <!-- 푸터 영역 끝 -->

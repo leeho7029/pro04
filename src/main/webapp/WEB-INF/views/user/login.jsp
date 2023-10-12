@@ -49,7 +49,7 @@
     <h1>로그인</h1>
     <div class="main-agileinfo">
         <div class="agileits-top">
-            <form action="${path}/user/login.do" method="post">
+            <form action="${path}/user/loginpro.do" method="post">
                 <input type="text" name="id" id="id" class="form-control" placeholder="아이디 입력">
                 <input type="password" name="pw" id="pw" class="form-control" placeholder="비밀번호 입력">
 

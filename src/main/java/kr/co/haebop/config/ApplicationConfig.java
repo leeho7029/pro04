@@ -22,6 +22,22 @@ public class ApplicationConfig {
     public UserService userService() {return new UserServiceImpl();}
     @Bean
     public UserRepository userRepository() { return new UserRepositoryImpl();}
+    @Bean
+    public FileboardService fileboardService() {return new FileboardServiceImpl();}
+    @Bean
+    public FileboardRepository fileboardRepository() { return new FileboardRepositoryImpl();}
+    @Bean
+    public FileInfoService fileInfoService() {return new FileInfoServiceImpl();}
+    @Bean
+    public FileInfoRepository fileInfoRepository() { return new FileInfoRepositoryImpl();}
+    @Bean
+    public CommunityService communityService() {return new CommunityServiceImpl();}
+    @Bean
+    public CommunityRepository communityRepository() { return new CommunityRepositoryImpl();}
+    @Bean
+    public CommentService commentService() {return new CommentServiceImpl();}
+    @Bean
+    public CommentRepository commentRepository() { return new CommentRepositortyImpl();}
 
 }
 

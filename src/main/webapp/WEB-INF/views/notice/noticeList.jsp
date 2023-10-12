@@ -100,6 +100,7 @@ lengthChange: false
 });
 } );
 </script>
+<br><br>
 <jsp:include page="../layout/footer.jsp"/>
 </body>
 </html>
