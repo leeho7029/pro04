@@ -25,13 +25,15 @@
                         </li>
                     </ul>
                 </li>
-                <li class="dropdown"><a href="#"><span>강의</span> <i class="bi bi-chevron-down"></i></a>
-                    <ul>
-                        <li><a href="#">강의</a></li>
-                        <li><a href="#">교재</a></li>
-                        <li><a href="#">강사소개</a></li>
-                    </ul>
-                </li>
+                <li><a href="${path}/lecture/home">강의</a></li>
+<%--                <li class="dropdown"><a href="#"><span>강의</span> <i class="bi bi-chevron-down"></i></a>--%>
+<%--                    <ul>--%>
+<%--                        <li><a href="#">국어</a></li>--%>
+<%--                        <li><a href="#">영어</a></li>--%>
+<%--                        <li><a href="#">수학</a></li>--%>
+<%--                    </ul>--%>
+<%--                </li>--%>
+                <li><a href="${path}/book/home">교재</a></li>
 
             <c:if test="${sid eq null}">
                 <li><a href="${path}/user/login.do" class="getstarted">로그인</a></li>
@@ -43,7 +45,7 @@
                     <li><a href="${path}/user/mypage.do" class="btn-get-started">마이페이지</a></li>
                 </c:if>
                 <c:if test="${sid ne null and sid eq 'admin'}">
-                    <li><a href="${path}/admin/adminlist.do" class="getstarted">관리자페이지</a></li>
+                    <li><a href="${path}/admin/adminList.do" class="getstarted">관리자페이지</a></li>
                     <li><a href="${path}/user/logout.do" class="btn-get-started">로그아웃</a></li>
                 </c:if>
 

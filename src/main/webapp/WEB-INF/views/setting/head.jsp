@@ -19,6 +19,8 @@
 <link href="${path}/resources/vendor/remixicon/remixicon.css" rel="stylesheet">
 <link href="${path}/resources/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
+
+
 <!-- Template Main CSS File -->
 <link href="${path}/resources/css/style.css" rel="stylesheet">
 
