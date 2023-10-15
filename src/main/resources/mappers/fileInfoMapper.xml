@@ -6,6 +6,7 @@
         select * from fileInfo where articleno=#{articleno}
     </select>
 
+
     <update id="fileboardEdit">
         update fileInfo set saveFolder=#{saveFolder}, originFile=#{originFile}, saveFile=#{saveFile} where articleno=#{articleno}
     </update>
@@ -31,4 +32,5 @@
             (#{articleno}, #{fileInfo.saveFolder}, #{fileInfo.originFile}, #{fileInfo.saveFile})
         </foreach>
     </insert>
+
 </mapper>

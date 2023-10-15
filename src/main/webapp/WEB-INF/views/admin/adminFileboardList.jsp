@@ -12,32 +12,35 @@
                 <hr class="my-4">
                 <ul class="nav flex-column mb-auto">
                     <li class="nav-item">
-                        <a id="admin-member-nav" href="${path}/MemberListAdmin.do" class="nav-link text-white">
+                        <a id="admin-member-nav" href="${path}/admin/adminuserList.do" class="nav-link text-white">
                             회원 관리
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a id="admin-notice-nav" href="${path}/NoticeListAdmin.do" class="nav-link text-white">
+                        <a id="admin-notice-nav" href="${path}/admin/adminNoticeList.do" class="nav-link text-white">
                             공지사항 관리
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a id="admin-book-nav" href="${path}/BookListAdmin.do" class="nav-link text-white">
+                        <a id="admin-book-nav" href="${path}admin/adminBookList.do" class="nav-link text-white">
                             교재 관리
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a id="admin-cate-nav" href=${path}/CategoryList.do" class="nav-link text-white">
-                        카테고리 관리
+                        <li class="nav-item">
+                        <a id="admin-cate-nav" href="${path}/subject/list.do" class="nav-link text-white">
+                            과목 관리
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a id="admin-file-nav" href="${path}/admin/insert.do" class="nav-link text-white">
+                        <a id="admin-file-nav" href="${path}/admin/adminLectureList.do" class="nav-link text-white">
                             강의 관리
                         </a>
                     </li>
                     <li class="nav-item">
-                    <a href="${path}/admin/adminFileList.do"class="nav-link text-white">자료실</a>
+                        <a href="${path}/admin/adminFileList.do"class="nav-link text-white">자료실</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="${path}/admin/adminsubjectList.do"class="nav-link text-white">강사 관리</a>
                     </li>
                 </ul>
             </div>
@@ -84,5 +87,12 @@
                 </tbody>
             </table>
         </div>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+        <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript">
+            jQuery(function ($) {
+                $("#file-table").DataTable();
+            })
+        </script>
     </div>
 </div>

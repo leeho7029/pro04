@@ -14,7 +14,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public List<User> UserList() throws Exception {
-        return sqlSession.selectList("user.userList");
+        return sqlSession.selectList("user.UserList");
     }
 
     @Override

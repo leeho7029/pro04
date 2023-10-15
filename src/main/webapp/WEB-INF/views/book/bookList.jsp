@@ -11,7 +11,7 @@
     <title>Document</title>
     <jsp:include page="../setting/head.jsp"></jsp:include>
 </head>
-<body>
+<div>
 <jsp:include page="../layout/header.jsp"></jsp:include>
 <br>
 <section id="breadcrumbs" class="breadcrumbs">
@@ -42,45 +42,43 @@
             </aside>
         </div>
         <div class="col-md-9">
+            <div class="button-group" style="float:right;">
+                <a class="bi-menu-button" style="font-size: 19px" href="${path}/book/insert.do">등록하기</a>
+            </div>
             <div class="container mt-5">
                 <ul class="list-group thumb_list_wrap">
-            <c:forEach items="${noticeList}" var="notice" varStatus="status">
+            <c:forEach items="${bookList}" var="book" varStatus="status">
         <li>
             <div class="img">
-                <img src="" alt="교재사진">
+                <img src="${pageContext.request.contextPath}/resources/upload/book/${item.saveFolder}/${item.saveFile}" alt="교재사진">
             </div>
             <div class="cont_wrap">
                 <div class="txt_area">
                     <div>
-                        <span class="flag_ro_col1">고1</span>
-                        <span class="flag_ro_col4">${notice.id}</span></div>
                     <p class="tit">
-                        <a href="">${notice.title}</a>
+                        <a href="">${book.bktitle}</a>
                     </p>
                     <div class="detail_info">
-                        <span>발행일 <em>${notice.regdate}</em></span>
-                        <span >종이책 정가 <em>${notice.seq}</em>원</span>
-                        <span>종이책
-                            <button type="button" class="btn_buy" onclick="fn_aiSendParam();">
+                        <span>발행일 <em>${book.pubdate}</em></span>
+                        <span >정가 <em>${book.price}</em>원</span>
+                        <span>
+                            <button type="button" class="btn_buy" href="${path}/book/purchase">
                             <span>구매하기</span></button>
 						</span>
-                        <span class="font_darkgray theView">
-						<button type="button" class="btn_zoom" title="미리보기" onclick="previewPop('')">
-                            <span>교재</span>
-                        </button>
-						</span>
+                        <span class="font_darkgray theView"></span>
                     </div>
-                </div>
-                <div class="btn_wrap">
-                    <button type="button" class="btn_L_col1" onclick="window.location.href=''"><span>교재 정답지</span></button>
-                    <button type="button" class="btn_L_col2" onclick="window.location.href=''"><span>교재 정오표</span></button>
+                    </div>
                 </div>
             </div>
         </li>
     <hr>
 </c:forEach>
-    </ul>
+                </ul>
             </div>
+        </div>
+    </div>
 </div>
+
+<jsp:include page="../layout/footer.jsp"/>
 </body>
 </html>

@@ -42,7 +42,7 @@
                 <c:if test="${sid ne null and sid ne 'admin'}">
                     <li style="margin-left: 40px">${sid}님 환영합니다</li>
                     <li><a href="${path}/user/logout.do" class="getstarted">로그아웃</a></li>
-                    <li><a href="${path}/user/mypage.do" class="btn-get-started">마이페이지</a></li>
+                    <li><a href="${path}/user/login2.do" class="btn-get-started">마이페이지</a></li>
                 </c:if>
                 <c:if test="${sid ne null and sid eq 'admin'}">
                     <li><a href="${path}/admin/adminList.do" class="getstarted">관리자페이지</a></li>

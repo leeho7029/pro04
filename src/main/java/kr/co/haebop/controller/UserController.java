@@ -48,7 +48,7 @@ public class UserController {
         user.setPw(pw);
         user.setName(request.getParameter("name"));
         user.setEmail(request.getParameter("email"));
-        user.setTel("tel");
+        user.setTel(request.getParameter("tel"));
         user.setAddr1(request.getParameter("addr1"));
         user.setAddr2(request.getParameter("addr2"));
         user.setPostcode(request.getParameter("postcode"));
@@ -126,7 +126,7 @@ public class UserController {
         String id = (String) session.getAttribute("sid");
         User user = userService.getUser(id);
         model.addAttribute("user",user);
-        return "/user/myinfo";
+        return "/user/myInfo";
     }
     @GetMapping("mypage.do")
     public String mypage(Model model) throws Exception {
@@ -161,4 +161,6 @@ public class UserController {
 
         return "/user/userList";
     }
+
+
 }

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="teacher">
+    <select id="teacherList" resultType="kr.co.haebop.domain.Teacher">
+        select * from teacher
+    </select>
+
+    <insert id="teacherInsert" parameterType="teacher">
+        insert into teacher(tname, ttel, tmail)
+        values(#{tname},#{tmail},#{ttel})
+        <selectKey resultType="int" keyProperty="seq" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+
+    <insert id="fileRegister" parameterType="teacher">
+        insert into fileinfo2 (seq, savefolder, originfile, savefile)
+        values
+        <foreach collection="fileInfos" item="fileinfo2" separator=" , ">
+            (#{seq}, #{fileinfo2.saveFolder}, #{fileinfo2.originFile}, #{fileinfo2.saveFile})
+        </foreach>
+    </insert>
+
+    <resultMap type="teacher" id="teacherList">
+        <result property="seq" column="seq"/>
+        <result property="tname" column="tname"/>
+        <result property="ttel" column="ttel"/>
+        <result property="tmail" column="tamil"/>
+        <result property="regdate" column="regdate"/>
+        <collection property="fileInfos" column="seq" javaType="list" ofType="FileInfo2" select="fileInfos"/>
+    </resultMap>
+
+    <select id="listArticle" parameterType="map" resultMap="teacherList">
+        select seq, tname, ttel, tmail, regdate
+        from teacher
+        <if test="word != null and word != ''">
+            <if test="key == 'tname'">
+                where rirle like concat('%', #{word}, '%')
+            </if>
+            <if test="key != 'tname'">
+                where ${key} = #{word}
+            </if>
+        </if>
+        order by seq desc
+        limit #{start}, #{spp}
+    </select>
+
+
+    <delete id="teacherDelete">
+        delete from teacher where seq=#{seq}
+    </delete>
+
+    <select id="teacherDetail" resultType="kr.co.haebop.domain.Teacher">
+        select * from teacher where seq=#{seq}
+    </select>
+
+    <update id="countUp">
+        update teacher set title=#{title}, content=#{content} where seq=#{seq}
+    </update>
+
+
+</mapper>

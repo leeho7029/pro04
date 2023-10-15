@@ -46,34 +46,19 @@
                 <ul class="list-group thumb_list_wrap">
                     <li class="list-group-item">
                         <div class="row">
-                            <c:forEach items="${noticeList}" var="notice" varStatus="status">
+                            <c:forEach items="${lectureList}" var="lecture" varStatus="status">
                             <div class="col-md-2 img">
                                 <img src="" alt="선생님">
                             </div>
 
                             <div class="col-md-10 cont_wrap">
-
                                 <div class="txt_area">
-                                    <div>
-                                        <span class="badge badge-primary flag_ro_col1">고3</span>
-                                        <span class="badge badge-secondary flag_ro_col2">문제풀이</span>
-                                        <span class="badge badge-success flag_ro_col3 cStep02">기본</span>
-                                    </div>
-                                    <h6 class="tit"><a href="${path}/lecture/detail.do?seq=${notice.seq}">${notice.title}</a></h6>
-                                    <div class="state complt">
-                                        <span>제작중</span>
-                                        <span>강의자료</span>
-                                    </div>
-                                    <!-- 제작완료일 때 complt 클래스 -->
-                                    <div class="detail_info">
-                                        <span>${notice.seq}</span>
-                                        <span>${notice.id}</span>
-                                        <span>강의 수 2/8</span>
-                                    </div>
-                                </div>
+                                    <h6 class="tit"><a href="${path}/lecture/detail.do?lecno=${lecture.lecno}">${lecture.lectitle}</a></h6>
 
+                                    <!-- 제작완료일 때 complt 클래스 -->
+                                </div>
                                 <div class="btn_wrap">
-                                    <button type="button" class="btn btn-primary btn_L_col2" onclick="registerCourse('S20230000533','');"><span>수강신청</span></button>
+                                    <button type="button" class="btn btn-primary btn_L_col2" href="${path}/"><span>수강신청</span></button>
                                 </div>
                             </div>
                                 <hr>

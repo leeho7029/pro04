@@ -12,65 +12,117 @@
                 <hr class="my-4">
                 <ul class="nav flex-column mb-auto">
                     <li class="nav-item">
-                        <a id="admin-member-nav" href="${path}/MemberListAdmin.do" class="nav-link text-white">
+                        <a id="admin-member-nav" href="${path}/admin/adminuserList.do" class="nav-link text-white">
                             회원 관리
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a id="admin-notice-nav" href="${path}/NoticeListAdmin.do" class="nav-link text-white">
+                        <a id="admin-notice-nav" href="${path}/admin/adminNoticeList.do" class="nav-link text-white">
                             공지사항 관리
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a id="admin-book-nav" href="${path}/BookListAdmin.do" class="nav-link text-white">
+                        <a id="admin-book-nav" href="${path}admin/adminBookList.do" class="nav-link text-white">
                             교재 관리
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a id="admin-cate-nav" href "${path}/CategoryList.do" class="nav-link text-white">
-                        카테고리 관리
+                        <li class="nav-item">
+                        <a id="admin-cate-nav" href="${path}/subject/list.do" class="nav-link text-white">
+                            과목 관리
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a id="admin-file-nav" href="${path}/admin/insert.do" class="nav-link text-white">
+                        <a id="admin-file-nav" href="${path}/admin/adminLectureList.do" class="nav-link text-white">
                             강의 관리
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="${path}/admin/adminFileList.do"class="nav-link text-white">자료실</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="${path}/admin/adminTeacherList.do"class="nav-link text-white">강사 관리</a>
+                    </li>
                 </ul>
             </div>
         </div>
         <div class="col-md-8">
-            <section class="section">
-                <form action="${path}/community/insert.do" method="post" class="container">
-                    <div class="row mb-3">
+            <br>
+            <br>
+            <br>
+            <div class="col-md-9">
+                <form action="${path}/lecture/insertpro.do" id="lectureInsert" method="post" enctype="multipart/form-data">
+                    <div class="column is-10-tablet">
                         <label for="cate" class="col-md-2 col-form-label">카테고리</label>
                         <div class="col-md-4">
                             <select name="cate" id="cate" class="form-select">
-                                <c:forEach var="category" items="${categories}">
-                                    <option value="${category.cate}">${category.cateName}</option>
-                                </c:forEach>
+                                <option>국어</option>
+                                <option>영어</option>
+                                <option>수학</option>
                             </select>
                         </div>
-                        <label for="title" class="col-md-2 col-form-label">제목</label>
-                        <div class="col-md-4">
-                            <input type="text" id="title" name="title" class="form-control">
+                    </div>
+                    <div class="column is-10-tablet">
+                        <label for="lectitle" class="label" style="color: white">강의 제목 </label>
+                        <div class="control">
+                            <input class="form-control" type="text" id="lectitle" name="lectitle" placeholder="제목을 입력해주세요"  autocomplete="off" required>
                         </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="content" class="form-label">내용</label>
-                        <textarea name="content" id="content" class="form-control" placeholder="내용 입력" rows="8" cols="100" maxlength="1400" required></textarea>
-                        <script>
-                            CKEDITOR.replace('content', { filebrowserUploadUrl: '${path}/community/imageUpload.do' });
-                        </script>
+                    <div class="column is-10-tablet">
+                        <label for="stno" class="label" style="color: white">총원 </label>
+                        <div class="control">
+                            <input class="form-control" type="number" id="stno" name="stno" placeholder="총원을 입력해주세요"  autocomplete="off" required>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <input type="submit" class="btn btn-primary btn-block" value="등록하기">
+                    <div class="column is-10-tablet">
+                        <select name="subcode" id="subcode" class="form-select">
+<%--                            <c:forEach var="subject" items="${subject}">--%>
+<%--                                <option value="${subject.subcode}">${subject.title}</option>--%>
+<%--                            </c:forEach>--%>
+                                    <option>11</option>
+                                    <option>22</option>
+                                     <option>33</option>
+                        </select>
                     </div>
+                    <div class="column is-10-tablet">
+                        <select name="bkcode" id="bkcode" class="form-select">
+<%--                            <c:forEach var="book" items="${book}">--%>
+<%--                                <option value="${book.bkcode}">${book.title}</option>--%>
+<%--                            </c:forEach>--%>
+    <option>111</option>
+    <option>222</option>
+    <option>333</option>
+                        </select>
+                    </div>
+                    <div class="column is-10-tablet">
+                        <label for="upfile">파일 선택</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="upfile" name="upfile" multiple="multiple">
+                            <label class="custom-file-label" for="upfile">파일을 선택하세요</label>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="column is-10-tablet is-10">
+                        <button type="submit" class="btn btn-danger" style="display: flex; justify-content: right"> 등록하기 </button>
+                    </div>
+                    <li class="nav-item">
+                        <a href="${path}/admin/adminsubjectList.do"class="nav-link text-white">강의 목록</a>
+                    </li>
                 </form>
-            </section>
+            </div>
         </div>
     </div>
 </div>
+
+<script>
+    $(".file-input").on("change", () => {
+        let fileName = '';
+        let fileLength = $(".file-input")[0].files.length;
+        if(fileLength > 1) {
+            fileName = fileLength + "개의 파일";
+        } else {
+            fileName = $(".file-input").val().split("\\").pop();
+        }
+        $(".file-name").text("\t 선택한 파일 : " + fileName);
+    });
+</script>
+

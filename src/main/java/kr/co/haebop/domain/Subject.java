@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Subject {
+    private int subno;
     private String subcode;
     private String title;
-    private int price;
 }

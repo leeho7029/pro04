@@ -88,9 +88,10 @@
                 </div>
                 <div class="column is-10-tablet">
                     <label for="tel" class="label" style="color: white"> 전화번호 </label>
-                    <div class="control">
-                        <input type="text" id="tel" name="tel" placeholder="전화번호를 입력해주세요" class="form-control" autocomplete="off" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}" required>
-                        <p>000-0000-0000 특수기호 포함하여 입력해주세요</p>
+                    <div class="mb-3">
+                        <label for="tel" class="form-label">전화번호</label>
+                        <input type="tel" class="form-control" name="tel" id="tel"  pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}" required>
+                        <p class="form-text">(특수기호 포함하여 000-0000-0000 으로 입력해주세요)</p>
                     </div>
                 </div>
                 <div class="column is-10-tablet">

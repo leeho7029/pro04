@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="book">
+    <select id="bookList" resultType="kr.co.haebop.domain.Book">
+        select * from book
+    </select>
+
+    <insert id="bookInsert">
+        INSERT INTO book (bkcode, bktitle,bindex,pubdate,author,price,memo) VALUES (UUID(), #{bktitle},#{bindex},#{pubdate},#{author},#{price},#{memo});
+    </insert>
+    <insert id="bookInsert" parameterType="book">
+        insert into book (bkcode, bktitle,bindex,pubdate,author,price,memo)
+        VALUES (UUID(), #{bktitle},#{bindex},#{pubdate},#{author},#{price},#{memo})
+        <selectKey resultType="int" keyProperty="no" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+    <delete id="bookDelete">
+        delete from book where no=#{no}
+    </delete>
+
+    <select id="bookDetail" resultType="kr.co.haebop.domain.Book">
+        select * from book where no=#{no}
+    </select>
+    
+
+</mapper>

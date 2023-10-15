@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="LecBoardKor">
+    <select id="LecBoardKorList" resultType="kr.co.haebop.domain.LecBoardKor">
+        select * from lecBoardKor
+    </select>
+
+    <insert id="LecBoardKorInsert">
+        insert into lecBoardKor values (default,#{title}, #{content},'admin',default,default)
+    </insert>
+
+    <delete id="LecBoardKorDelete">
+        delete from lecBoardKor where seq=#{seq}
+    </delete>
+
+    <select id="LecBoardKorDetail" resultType="kr.co.haebop.domain.LecBoardKor">
+        select * from lecBoardKor where seq=#{seq}
+    </select>
+
+    <update id="countUp">
+        update lecBoardKor set title=#{title}, content=#{content} where seq=#{seq}
+    </update>
+
+
+</mapper>

@@ -10,6 +10,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <jsp:include page="../setting/head.jsp"></jsp:include>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
 <jsp:include page="../layout/header.jsp"></jsp:include>
@@ -54,7 +59,7 @@
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="myreview-tab" data-bs-toggle="tab"
                                 data-bs-target="#myreview" type="button" role="tab"
-                                aria-controls="myreview" aria-selected="false">강의</button>
+                                aria-controls="myreview" aria-selected="false">맛보기 강의</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="wishlist-tab" data-bs-toggle="tab"
@@ -66,14 +71,66 @@
                 <!-- 내용 -->
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="userinfo" role="tabpanel"
-                         aria-labelledby="userinfo-tab">${notice.content }</div>
+                         aria-labelledby="userinfo-tab">
+
+                    </div>
+
+
+
                     <div class="tab-pane fade" id="myreview" role="tabpanel"
-                         aria-labelledby="myreview-tab">${notice.title}</div>
+                         aria-labelledby="myreview-tab">
+                        <div class="has-background-white card-content shadow-down p-6">
+                            <h3 class="has-text-centered"> 강사 정보 </h3>
+                            <hr>
+                            <div class="columns is-multiline is-centered">
+                                    <label class="label"> 비디오 </label>
+                                    <c:forEach var="item" items="${fileboard}">
+                                        <video controls width="400">
+                                            <source src="${pageContext.request.contextPath}/resources/upload/lecture/${item.saveFolder}/${item.saveFile}" type="video/mp4">
+                                        </video>
+                                    </c:forEach>
+                            </div>
+                        </div>
+                    </div>
+
+
+
                     <div class="tab-pane fade" id="wishlist" role="tabpanel"
-                         aria-labelledby="wishlist-tab">${notice.id}
-                        <table>
-                            <th>eee</th>
-                            <td>2222</td>
+                         aria-labelledby="wishlist-tab">
+                        <div class="button-group" style="float:right;">
+                            <a class="bi-menu-button" style="font-size: 19px" href="${path }/lecBoardKor/insert.do">글쓰기</a>
+                        </div>
+                        <table class="table" id="lecBoardKor-table">
+                            <thead>
+                            <tr>
+                                <th width="80">번호</th>
+                                <th width="200">제목</th>
+                                <th width="80">작성자</th>
+                                <th width="120">작성일</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${lecBoardKorList}" var="lecBoardKor" varStatus="status">
+                                <tr>
+                                    <td>${lecBoardKor.seq}</td>
+                                    <td><a href="${path}/lecBoardKor/detail.do?seq=${lecBoardKor.seq}" style="color: #000000;">${lecBoardKor.title}</a></td>
+                                    <td>${lecBoardKor.id}</td>
+                                    <td>
+                                        <fmt:parseDate value="${lecBoardKor.regdate}" var="resdate" pattern="yyyy-MM-dd HH:mm:ss"/>
+                                        <fmt:formatDate value="${resdate}" pattern="yyyy-MM-dd"/>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            <c:if test="${empty lecBoardKorList}">
+                                <tr>
+                                    <td >등록된 자료가 없습니다.</td>
+                                    <td>.</td>
+                                    <td>.</td>
+                                    <td>.</td>
+
+                                </tr>
+                            </c:if>
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -81,7 +138,7 @@
         </div>
     </div>
 </div>
-
+<jsp:include page="../layout/footer.jsp"/>
 </body>
 <script>
     let key = "${param.key}";
@@ -117,5 +174,18 @@
         $("#wishlist").addClass("show active");
 
     }
+</script>
+
+<script>
+    $(document).ready( function () {
+        $('#lecBoardKor-table').DataTable({
+            responsive : true,
+            ordering: false,
+            language: {
+                url: '/js/user/dataTables.ko.json'
+            },
+            lengthChange: false
+        });
+    } );
 </script>
 </html>

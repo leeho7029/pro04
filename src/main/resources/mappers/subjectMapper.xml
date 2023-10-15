@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="subject">
+    <select id="subjectList" resultType="kr.co.haebop.domain.Subject">
+        select * from subject
+    </select>
+
+    <insert id="subjectInsert">
+        INSERT INTO subject (subcode, title) VALUES (UUID(), #{title});
+    </insert>
+
+    <delete id="subjectDelete">
+        delete from subject where subno=#{subno}
+    </delete>
+
+    <select id="subjectDetail" resultType="kr.co.haebop.domain.Subject">
+        select * from subject where subno=#{subno}
+    </select>
+
+
+</mapper>
