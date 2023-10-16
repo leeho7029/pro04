@@ -18,8 +18,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book bookDetail(int no) throws Exception {
-        return bookRepository.bookDetail(no);
+    public Book bookDetail(int bkno) throws Exception {
+        return bookRepository.bookDetail(bkno);
     }
 
     @Override
@@ -28,8 +28,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void bookDelete(int no) throws Exception {
-        bookRepository.bookDelete(no);
+    public void bookDelete(int bkno) throws Exception {
+        bookRepository.bookDelete(bkno);
     }
 
     @Override

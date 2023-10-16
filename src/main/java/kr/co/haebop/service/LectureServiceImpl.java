@@ -43,4 +43,9 @@ public class LectureServiceImpl implements LectureService{
     public void fileRegister(Lecture lecture) throws Exception {
         lectureRepository.fileRegister(lecture);
     }
+
+    @Override
+    public Lecture lectureSelect(String leccode) throws Exception {
+        return lectureRepository.lectureSelect(leccode);
+    }
 }

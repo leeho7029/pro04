@@ -18,8 +18,8 @@ public class BookRepositoryImpl implements BookRepository{
     }
 
     @Override
-    public Book bookDetail(int no) throws Exception {
-        return sqlSession.selectOne("book.bookDetail",no);
+    public Book bookDetail(int bkno) throws Exception {
+        return sqlSession.selectOne("book.bookDetail",bkno);
     }
 
     @Override
@@ -28,8 +28,8 @@ public class BookRepositoryImpl implements BookRepository{
     }
 
     @Override
-    public void bookDelete(int no) throws Exception {
-        sqlSession.delete("book.bookDelte",no);
+    public void bookDelete(int bkno) throws Exception {
+        sqlSession.delete("book.bookDelte",bkno);
     }
 
     @Override

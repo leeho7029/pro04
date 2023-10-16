@@ -48,19 +48,18 @@
                         <div class="row">
                             <c:forEach items="${lectureList}" var="lecture" varStatus="status">
                             <div class="col-md-2 img">
-                                <img src="" alt="선생님">
+                                <img src="" alt="사진"/>
                             </div>
 
-                            <div class="col-md-10 cont_wrap">
-                                <div class="txt_area">
-                                    <h6 class="tit"><a href="${path}/lecture/detail.do?lecno=${lecture.lecno}">${lecture.lectitle}</a></h6>
-
-                                    <!-- 제작완료일 때 complt 클래스 -->
+                                <div class="col-md-10 cont_wrap">
+                                    <div class="txt_area">
+                                        <h6 class="tit"><a href="${path}/lecture/detail.do?lecno=${lecture.lecno}">${lecture.lectitle}</a></h6>
+                                        <!-- 제작완료일 때 complt 클래스 -->
+                                    </div>
+                                    <div class="btn_wrap">
+                                        <a href="${path}/register/insert.do?lecno=${lecture.lecno}" class="btn btn-primary btn_L_col2"><span>수강신청</span></a>
+                                    </div>
                                 </div>
-                                <div class="btn_wrap">
-                                    <button type="button" class="btn btn-primary btn_L_col2" href="${path}/"><span>수강신청</span></button>
-                                </div>
-                            </div>
                                 <hr>
                             </c:forEach>
                         </div>

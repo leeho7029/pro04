@@ -20,7 +20,7 @@ public class LectureRepositoryImpl implements LectureRepository{
 
     @Override
     public Lecture lectureDetail(int lecno) throws Exception {
-        return sqlSession.selectOne("lecture.lectureDetail");
+        return sqlSession.selectOne("lecture.lectureDetail",lecno);
     }
 
     @Override
@@ -40,5 +40,10 @@ public class LectureRepositoryImpl implements LectureRepository{
     @Override
     public void fileRegister(Lecture lecture) throws Exception {
         sqlSession.insert("lecture.fileRegister", lecture);
+    }
+
+    @Override
+    public Lecture lectureSelect(String leccode) throws Exception {
+        return sqlSession.selectOne("lecture.lectureSelect",leccode);
     }
 }

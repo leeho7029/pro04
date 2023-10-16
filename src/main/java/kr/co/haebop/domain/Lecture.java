@@ -18,4 +18,5 @@ public class Lecture {
     private String stno;
     private String cate;
     private List<FileInfo3> fileInfos;
+    private int price;
 }

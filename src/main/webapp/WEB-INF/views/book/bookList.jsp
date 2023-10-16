@@ -50,7 +50,7 @@
             <c:forEach items="${bookList}" var="book" varStatus="status">
         <li>
             <div class="img">
-                <img src="${pageContext.request.contextPath}/resources/upload/book/${item.saveFolder}/${item.saveFile}" alt="교재사진">
+                <img src="${pageContext.request.contextPath}/resources/upload/book/${book.saveFolder}/${book.saveFile}" alt="교재사진">
             </div>
             <div class="cont_wrap">
                 <div class="txt_area">

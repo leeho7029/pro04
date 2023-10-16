@@ -11,4 +11,5 @@ public interface LectureService {
     public void lectureDelete(int lecno) throws Exception;
     public void lectureEdit(Lecture lecture) throws Exception;
     public void fileRegister(Lecture lecture) throws Exception;
+    public Lecture lectureSelect(String leccode) throws Exception;
 }

@@ -10,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Book {
-    private int no;
+    private int bkno;
     private String bkcode;
     private String bktitle;
     private String bindex;
@@ -19,5 +19,5 @@ public class Book {
     private String author;
     private String price;
     private String memo;
-    private List<FileInfo3> fileInfos;
+    private List<FileInfo4> fileInfos;
 }

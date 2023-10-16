@@ -43,59 +43,45 @@
         </div>
         <div class="col-md-9">
             <div class="container mt-5">
-                <form action="${path}/book/insertpro.do" method="post" enctype="multipart/form-data" >
+                <form action="${path}/register/insertpro.do" method="post">
+
                     <div class="column is-10-tablet">
-                        <label for="bktitle" class="label" style="color: white"> 제목 </label>
+                        <label for="lectitle" class="label" style="color: white"> 강의명 </label>
                         <div class="control">
-                            <input class="form-control" type="text" id="bktitle" name="bktitle" placeholder="제목을 입력해주세요"  autocomplete="off" required>
-                        </div>
-                    </div>
-                    <div class="column is-10-tablet">
-                        <label for="author" class="label" style="color: white"> 저자 </label>
-                        <div class="control">
-                            <input class="form-control" type="text" id="author" name="author" placeholder="저자를 입력해주세요"  autocomplete="off" required>
+                            <input class="form-control" type="text" id="lectitle" name="lectitle" value="${lecture.lectitle}"  readonly >
                         </div>
                     </div>
                     <div class="column is-10-tablet">
                         <label for="price" class="label" style="color: white"> 가격 </label>
                         <div class="control">
-                            <input class="form-control" type="number" id="price" name="price" placeholder="가격(숫자만) 입력해주세요"  autocomplete="off" required>
+                            <input class="form-control" type="text" id="price" name="price" value="${lecture.price}"  readonly  >
                         </div>
                     </div>
                     <div class="column is-10-tablet">
-                        <label for="bindex" class="label" style="color: white"> 목차 </label>
+                        <label for="leccode" class="label" style="color: white"> 강의코드 </label>
                         <div class="control">
-                            <textarea class="form-control" name="bindex" id="bindex" rows="3"  placeholder="목차를 입력해주세요"></textarea>
+                            <input class="form-control" type="text" id="leccode" name="leccode" value="${lecture.leccode}"  readonly >
                         </div>
                     </div>
                     <div class="column is-10-tablet">
-                        <label for="upfile">파일 선택</label>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="upfile" name="upfile" multiple="multiple">
-                            <label class="custom-file-label" for="upfile">파일을 선택하세요</label>
-                        </div>
-                    </div>
-
-                    <div class="column is-10-tablet">
-                        <label for="pubdate" class="label" style="color: white"> 발행일 </label>
+                        <label for="name" class="label" style="color: white"> 주문하는 사람 </label>
                         <div class="control">
-                            <input type="date" id="pubdate" name="pubdate" max="${minYear}-12-31" placeholder="발행일을 입력해주세요" class="form-control" autocomplete="off" required>
-                        </div>
-                    </div>
-                    <div class="column is-10-tablet">
-                        <label for="memo" class="label" style="color: white"> 내용 </label>
-                        <div class="control">
-                            <textarea class="form-control" name="memo" id="memo" rows="3"  placeholder="내용을 입력해주세요"></textarea>
+                            <input hidden="hidden" class="form-control" type="text" id="id" name="id" value="${user.id}"  readonly >
+                            <input class="form-control" type="text" id="name" name="name" value="${user.name}"  readonly >
                         </div>
                     </div>
                     <br>
                     <div class="column is-10-tablet is-10">
-                        <button type="submit" class="btn btn-danger" style="display: flex; justify-content: right"> 교재 추가하기 </button>
+                        <button type="submit" class="btn btn-danger" style="display: flex; justify-content: right"> 결제하기 </button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+
+
+<jsp:include page="../layout/footer.jsp"/>
 </body>
 </html>

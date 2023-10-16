@@ -67,5 +67,13 @@ public class ApplicationConfig {
     public LectureService lectureService() {return new LectureServiceImpl();}
     @Bean
     public LectureRepository lectureRepository() { return new LectureRepositoryImpl();}
+    @Bean
+    public FileInfo4Service fileInfo4Service() {return new FileInfo4ServiceImpl();}
+    @Bean
+    public FileInfo4Repository fileInfo4Repository() { return new FileInfo4RepositoryImpl();}
+    @Bean
+    public RegisterService registerService() {return new RegisterServiceImpl();}
+    @Bean
+    public RegisterRepository registerRepository() { return new RegisterRepositoryImpl();}
 }
 

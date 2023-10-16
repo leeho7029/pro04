@@ -56,5 +56,9 @@
         <collection property="fileInfos" column="lecno" javaType="list" ofType="FileInfo3" select="fileInfos"/>
     </resultMap>
 
+    <select id="lectureSelect" resultType="kr.co.haebop.domain.Lecture">
+        SELECT * FROM lecture WHERE leccode IN (#{leccode1}, #{leccode2}, #{leccode3});
+    </select>
+
 
 </mapper>

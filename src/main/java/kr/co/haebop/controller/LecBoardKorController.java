@@ -44,7 +44,7 @@ public class LecBoardKorController {
         LecBoardKor.setTitle(request.getParameter("title"));
         LecBoardKor.setContent(request.getParameter("content"));
         lecBoardKorService.LecBoardKorInsert(LecBoardKor);
-        return "redirect:list.do";
+        return "redirect:detail.do";
     }
 
     @GetMapping("delete.do")

@@ -1,6 +1,10 @@
 package kr.co.haebop.controller;
 
+import kr.co.haebop.domain.Lecture;
+import kr.co.haebop.domain.Register;
 import kr.co.haebop.domain.User;
+import kr.co.haebop.service.LectureService;
+import kr.co.haebop.service.RegisterService;
 import kr.co.haebop.service.UserService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +30,10 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private RegisterService registerService;
+    @Autowired
+    private LectureService lectureService;
     @Autowired
     HttpSession session;
 
@@ -162,5 +170,16 @@ public class UserController {
         return "/user/userList";
     }
 
-
+    @GetMapping("lectureRoom.do")
+    public String lectureRoom(Model model) throws Exception{
+        String id = (String) session.getAttribute("sid");
+        User user = userService.getUser(id);
+        Register register=registerService.registerSelect(id);
+        String leccode=register.getLeccode();
+        List<Lecture> lecture= lectureService.lectureList();
+        model.addAttribute("user",user);
+        model.addAttribute("register",register);
+        model.addAttribute("lecture",lecture);
+        return "/user/lectureRoom";
+    }
 }

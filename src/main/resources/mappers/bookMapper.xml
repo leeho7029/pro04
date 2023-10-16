@@ -7,22 +7,29 @@
         select * from book
     </select>
 
-    <insert id="bookInsert">
-        INSERT INTO book (bkcode, bktitle,bindex,pubdate,author,price,memo) VALUES (UUID(), #{bktitle},#{bindex},#{pubdate},#{author},#{price},#{memo});
-    </insert>
+
     <insert id="bookInsert" parameterType="book">
         insert into book (bkcode, bktitle,bindex,pubdate,author,price,memo)
         VALUES (UUID(), #{bktitle},#{bindex},#{pubdate},#{author},#{price},#{memo})
-        <selectKey resultType="int" keyProperty="no" order="AFTER">
+        <selectKey resultType="int" keyProperty="bkno" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
     </insert>
+
+    <insert id="fileRegister" parameterType="teacher">
+        insert into fileinfo2 (bkno, savefolder, originfile, savefile)
+        values
+        <foreach collection="fileInfos" item="fileinfo4" separator=" , ">
+            (#{seq}, #{fileinfo2.saveFolder}, #{fileinfo2.originFile}, #{fileinfo2.saveFile})
+        </foreach>
+    </insert>
+
     <delete id="bookDelete">
-        delete from book where no=#{no}
+        delete from book where bkno=#{bkno}
     </delete>
 
     <select id="bookDetail" resultType="kr.co.haebop.domain.Book">
-        select * from book where no=#{no}
+        select * from book where bkno=#{bkno}
     </select>
     
 

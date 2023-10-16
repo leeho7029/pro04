@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="register">
+    <select id="registerList" resultType="kr.co.haebop.domain.Register">
+        select * from register
+    </select>
+
+    <insert id="registerInsert">
+        INSERT INTO register (regcode, leccode,id) VALUES (UUID(), #{leccode},#{id});
+    </insert>
+
+    <delete id="registerDelete">
+        delete from register where regno=#{regno}
+    </delete>
+
+    <select id="registerDetail" resultType="kr.co.haebop.domain.Register">
+        select * from register where regno=#{regno}
+    </select>
+
+    <select id="registerSelect" resultType="kr.co.haebop.domain.Register">
+        select * from register where id=#{id}
+    </select>
+</mapper>

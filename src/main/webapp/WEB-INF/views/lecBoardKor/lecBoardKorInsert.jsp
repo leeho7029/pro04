@@ -52,7 +52,7 @@
         </div>
         <div class="col-md-9">
             <div class="container">
-                <form action="${path }/notice/insert.do" method="post">
+                <form action="${path }/lecBoardKor/insert.do" method="post">
                     <div class="mb-3">
                         <label class="form-label" for="title">제목</label>
                         <input class="form-control" type="text" name="title" id="title">

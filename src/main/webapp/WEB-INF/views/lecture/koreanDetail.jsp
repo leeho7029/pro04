@@ -110,17 +110,17 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${lecBoardKorList}" var="lecBoardKor" varStatus="status">
+
                                 <tr>
-                                    <td>${lecBoardKor.seq}</td>
-                                    <td><a href="${path}/lecBoardKor/detail.do?seq=${lecBoardKor.seq}" style="color: #000000;">${lecBoardKor.title}</a></td>
-                                    <td>${lecBoardKor.id}</td>
+                                    <td>${lecBoardKorList.seq}</td>
+                                    <td><a href="${path}/lecBoardKor/detail.do?seq=${lecBoardKorList.seq}" style="color: #000000;">${lecBoardKorList.title}</a></td>
+                                    <td>${lecBoardKorList.id}</td>
                                     <td>
-                                        <fmt:parseDate value="${lecBoardKor.regdate}" var="resdate" pattern="yyyy-MM-dd HH:mm:ss"/>
+                                        <fmt:parseDate value="${lecBoardKorList.regdate}" var="resdate" pattern="yyyy-MM-dd HH:mm:ss"/>
                                         <fmt:formatDate value="${resdate}" pattern="yyyy-MM-dd"/>
                                     </td>
                                 </tr>
-                            </c:forEach>
+
                             <c:if test="${empty lecBoardKorList}">
                                 <tr>
                                     <td >등록된 자료가 없습니다.</td>
