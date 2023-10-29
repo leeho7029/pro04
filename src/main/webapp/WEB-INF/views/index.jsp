@@ -91,7 +91,7 @@
     </section><!-- End Clients Section -->
 
     <!-- ======= Services Section ======= -->
-    <section id="services" class="services">
+    <section id="services" class="services" style="border: black">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">

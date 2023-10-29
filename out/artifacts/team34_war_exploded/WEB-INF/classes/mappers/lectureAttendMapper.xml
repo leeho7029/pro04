@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.ed.haebeop.persistence.LectureAttendMapper">
+
+    <!-- 강사 전용 학생 출결 관리 리스트 -->
+    <select id="attendListTeacher" parameterType="hashMap" resultType="kr.ed.haebeop.domain.LectureAttendVO">
+        SELECT * FROM (
+          SELECT r.lcode as lcode, u.id as id, name, adate, atime, atype
+          FROM register r LEFT OUTER JOIN lectureattend l ON (r.lcode=l.lcode AND r.id=l.id) JOIN user u ON (r.id=u.id)
+          WHERE r.lcode=#{lcode} AND adate=CURRENT_DATE
+          UNION ALL
+          SELECT r.lcode as lcode, u.id as id, NAME, NULL AS adate, NULL AS atime, NULL AS atype
+          FROM register r JOIN user u ON (r.id=u.id)
+          WHERE r.lcode=#{lcode}) atttendList
+        GROUP BY id
+        ORDER BY adate DESC, id ASC LIMIT #{total}
+    </select>
+
+    <!-- 학생회원이 접근 가능한 해당 강의 출결 정보 리스트 -->
+    <select id="attendListStudent" parameterType="hashMap" resultType="kr.ed.haebeop.domain.LectureAttendVO">
+        SELECT * FROM lectureattend
+        WHERE lcode=#{lcode} AND id=#{id}
+        ORDER BY adate DESC
+    </select>
+
+    <!-- 출결 일괄 저장 -->
+    <insert id="insertAttend">
+        INSERT INTO lectureattend VALUES
+        <foreach collection="dataArray" item="item" separator=" , ">
+            (#{item.id}, #{item.lcode}, default, #{item.atime}, #{item.atype})
+        </foreach>
+        ON DUPLICATE KEY UPDATE atime=values(atime), atype=values(atype)
+    </insert>
+
+    <!-- 출결 코드 사용을 통한 출결 저장 -->
+    <insert id="insertAttendOne">
+        <!-- 강의의 시작 시간이 지나고, 출석코드가 생성되었다면 데이터 가져오기 -->
+        <selectKey keyColumn="dbAttendCode" keyProperty="dbAttendCode" resultType="hashmap" order="BEFORE">
+        <![CDATA[
+            SELECT attendCode AS dbAttendCode FROM lecture l JOIN saveattendcode s ON (l.lcode=s.lcode)
+            WHERE l.lcode=#{lcode} AND (CURRENT_TIME-stime) >= 0
+            UNION ALL
+            SELECT NULL AS attendCode LIMIT 1 ]]>
+        </selectKey>
+
+        <!-- 조건에 맞다면 출석체크 데이터 INSERT -->
+        INSERT INTO lectureattend
+        <choose>
+            <when test="dbAttendCode != null and dbAttendCode == attendCode">
+                VALUES(#{id}, #{lcode}, DEFAULT, DEFAULT, '출석')
+            </when>
+            <otherwise>
+                VALUES(#{id}, #{lcode}, DEFAULT, 0, '코드오류')
+            </otherwise>
+        </choose>
+        ON DUPLICATE KEY UPDATE atime=values(atime), atype=values(atype)
+    </insert>
+
+    <!-- 출결코드를 입력하지 않은 사용자 리스트 -->
+    <select id="absentStudents" resultType="String">
+        SELECT id FROM register WHERE lcode=#{lcode} AND
+                id NOT IN (SELECT id FROM lectureattend WHERE lcode=#{lcode} AND adate=CURRENT_DATE AND atype='출석')
+    </select>
+
+    <!-- 출결코드를 입력하지 않은 사람과 출결코드를 잘못 입력한 사람은 모두 결석 처리 -->
+    <insert id="insertAbsents" parameterType="hashMap">
+        INSERT INTO lectureattend VALUES
+        <foreach collection="idList" item="item" separator=" , ">
+            (#{item}, #{lcode}, default, 0, '결석')
+        </foreach>
+        ON DUPLICATE KEY UPDATE atime=0, atype=values(atype)
+    </insert>
+
+    <!-- 출결 코드 생성 -->
+    <insert id="saveAttendCode">
+        INSERT INTO saveattendcode
+        VALUES(#{lcode}, FLOOR(100 + RAND() * 899))
+        ON DUPLICATE KEY UPDATE attendCode=FLOOR(100 + RAND() * 899);
+    </insert>
+
+    <!-- 출결 코드 가져오기 -->
+    <select id="getAttendCode" resultType="int">
+        select attendCode from saveattendcode where lcode=#{lcode}
+    </select>
+
+    <!-- 시간 만료 시 (혹은 출결 종료 시) 출결 코드 삭제 -->
+    <delete id="delAttendCode">
+        delete from saveattendcode where lcode=#{lcode}
+    </delete>
+
+    <!-- 강사 로그인 시 자신의 강의 목록 불러오기 -->
+    <select id="teacherLectureList" resultType="kr.ed.haebeop.domain.LectureVO">
+        SELECT  lcode ,lname, sname, tname, lcontent, lprice, maxStudent, sdate, edate, stime, l.saveFile as saveFile, l.scode as scode, state, classroom
+        FROM subject s JOIN lecture l ON (s.scode=l.scode) JOIN teacher t ON (t.tcode=l.tcode)
+        WHERE state NOT IN ('close', 'on')
+    </select>
+</mapper>

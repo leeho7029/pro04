@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.ed.haebeop.persistence.PaymentMapper">
+    <select id="lectureDetail" resultType="kr.ed.haebeop.domain.Lecture">
+        select * from lecture where lcode=#{lcode}
+    </select>
+
+    <select id="bookDetail" resultType="kr.ed.haebeop.domain.Book">
+        select * from book where bcode=#{bcode}
+    </select>
+
+    <select id="paymentDetail" parameterType="hashMap" resultType="kr.ed.haebeop.domain.Payment">
+        select * from payment where id=#{id} and lcode=#{lcode}
+    </select>
+
+    <select id="getCount" resultType="integer">
+        select count(*) from payment where lcode=#{lcode}
+    </select>
+
+    <insert id="paymentInsert">
+        insert into payment (pno, title, lcode, bcode,id, tcode, method,com, price,account,resdate) values (DEFAULT, #{title}, #{lcode}, #{bcode}, #{id},#{tcode}, #{method}, #{com}, #{price}, #{account}, default)
+    </insert>
+
+    <insert id="paymentNoBookInsert">
+        insert into payment(pno, title, lcode, id, tcode,resdate) values (#{pno}, #{title}, #{lcode}, #{id}, #{tcode}, #{resdate})
+    </insert>
+
+    <select id="paymentNo" resultType="integer">
+        select pno from payment order by pno desc limit 1
+    </select>
+
+    <select id="deliveryList" resultType="kr.ed.haebeop.domain.Delivery">
+        select * from delivery order by dno desc
+    </select>
+
+    <insert id="deliveryInsert">
+        insert into delivery values (default, #{pno}, #{id}, #{addr}, #{tel},'','',default,default,'','')
+    </insert>
+
+    <select id="deliveryNo" resultType="kr.ed.haebeop.domain.Delivery">
+        select dno from delivery order by dno desc limit 1
+    </select>
+
+    <update id="dnoUpdate">
+        UPDATE payment SET dno = (select dno from delivery order by dno desc LIMIT 1) WHERE dno IS NULL
+    </update>
+
+    <insert id="serveInsert">
+        insert into serve values (default, #{pno},#{bcode}, #{sprice}, #{amount}, default)
+    </insert>
+
+    <update id="pointUpdate"  parameterType="hashMap">
+        UPDATE user SET pt = #{pt} WHERE id = #{id}
+    </update>
+
+    <delete id="paymentDelete">
+        delete from payment where pno=#{pno}
+    </delete>
+
+    <delete id="deliveryDelete">
+        delete from delivery where pno=#{pno}
+    </delete>
+
+    <delete id="serveDelete">
+        delete from serve where pno=#{pno}
+    </delete>
+
+    <select id="paymentList" resultType="kr.ed.haebeop.domain.PaymentVO">
+        SELECT a.resdate as resdate, b.lname as lname, c.bname as bname, d.dno as dno, a.pno as pno, e.tname as tname, b.lcode as lcode, b.sdate as sdate, b.edate as edate, b.state as state
+        FROM payment a JOIN lecture b ON (a.lcode=b.lcode) JOIN book c ON (a.bcode=c.bcode) JOIN delivery d ON (a.dno = d.dno) JOIN teacher e ON (a.tcode= e.tcode)
+        <where>
+        AND a.id = #{id}
+        </where>
+        order by a.resdate desc
+    </select>
+
+    <select id="myPaymentDetail" resultType="kr.ed.haebeop.domain.PaymentVO">
+        select a.price as price, a.resdate as resdate, a.method as method , b.lname as lname, c.bname as bname, b.lprice as lprice, c.bprice as bprice, d.dstatus as dstatus, a.pno as pno, b.lcode as lcode
+        From payment a JOIN lecture b ON (a.lcode=b.lcode) JOIN book c ON (a.bcode=c.bcode) JOIN delivery d ON (a.dno = d.dno) AND a.pno=#{pno}
+    </select>
+
+    <select id="period" resultType="integer">
+        SELECT DATEDIFF(edate,sdate) FROM lecture WHERE lcode=#{lcode}
+    </select>
+
+    <select id="payCount" resultType="integer">
+        select COUNT(*) from payment where id=#{id}
+    </select>
+
+    <select id="calcProfitBook" resultType="integer">
+        SELECT IFNULL(SUM(lprice), 0) FROM lecture l JOIN payment p ON (l.lcode=p.lcode)
+    </select>
+
+    <select id="already" resultType="boolean" parameterType="hashMap">
+        SELECT if(COUNT(*)=1, false, true) FROM payment WHERE lcode=#{lcode} AND id=#{id}
+    </select>
+
+    <select id="isMaxStudent" resultType="boolean" parameterType="hashMap">
+        SELECT IF(maxStudent=COUNT(*), FALSE, TRUE) FROM payment p JOIN lecture l ON (p.lcode=l.lcode) GROUP BY p.lcode HAVING p.lcode=#{lcode}
+        UNION ALL
+        SELECT true AS result FROM DUAL LIMIT 1;
+    </select>
+
+    <delete id="deleteRegister">
+
+    </delete>
+</mapper>

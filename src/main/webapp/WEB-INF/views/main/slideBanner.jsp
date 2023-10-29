@@ -27,28 +27,22 @@
 <div class="swiper mySwiper">
     <div class="swiper-wrapper">
         <div class="swiper-slide">
-            <a href="${path2}/fileboard/list.do" style="position: relative; display: inline-block;">
                 <img src="${path2}/resources/img/slide/camera.jpg" alt="메인페이지 배너3" style="width: 100vw; height: 50vW">
                 <div class="text-overlay">
-                    <p>최고의 강의와 퀄리티</p>
+                    <p style="color:yellow; font-size: 30px;">최고의 강의와 퀄리티</p>
                 </div>
-            </a>
         </div>
         <div class="swiper-slide">
-            <a href="${path2}/fileboard/list.do" style="position: relative; display: inline-block;">
                 <img src="${path2}/resources/img/slide/classroom.jpg" alt="메인페이지 배너3" style="width: 100vw; height: 50vW">
                 <div class="text-overlay">
-                    <p>넓은 강의실, 쾌적한 환경</p>
+                    <p style="color:yellow; font-size: 30px;">넓은 강의실, 쾌적한 환경</p>
                 </div>
-            </a>
         </div>
         <div class="swiper-slide">
-            <a href="${path2}/fileboard/list.do" style="position: relative; display: inline-block;">
                 <img src="${path2}/resources/img/slide/hallway.jpg" alt="메인페이지 배너3" style="width: 100vw; height: 50vW">
                 <div class="text-overlay">
-                    <p>24시간 학원운영, 상담가능</p>
+                    <p style="color:yellow; font-size: 30px;">24시간 학원운영, 상담가능</p>
                 </div>
-            </a>
         </div>
 
     </div>

@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+:root { --myHeight: 105px; }
+
+.vdo_fr {
+    width: 100%;
+    height: calc(100vh - var(--myHeight));
+    background: #111111;
+    text-align: center;
+}
+
+.back {
+    cursor: pointer;
+    background-color: #333;
+    transition: 0.1s;
+}
+
+.back:hover {
+    background-color: #444;
+}
+
+#progressBar {
+    width: 0px;
+    height: 10px;
+    background-color: #333;
+    position: fixed;
+    left: 0;
+    bottom: 48px;
+    transition: 1s;
+}
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#play {
+    display: none;
+}
+
+#currentTime {
+    line-height: 32px;
+}

@@ -1,57 +1,79 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:set var="path" value="<%=request.getContextPath() %>" />
-<header id="header" class="fixed-top d-flex align-items-center">
-    <div class="container d-flex align-items-center">
-         <a class="logo me-auto" href="${path}"> <img src="${path}/resources/img/logo.png" style="max-height: none;"></a>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:set var="path" value="${pageContext.request.contextPath }"/>
+<header class="header-area">
+    <!-- Navbar Area -->
+    <div class="oneMusic-main-menu">
+        <div class="classy-nav-container breakpoint-off">
+            <div class="container">
+                <!-- Menu -->
+                <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
-        <nav id="navbar" class="navbar">
-            <ul>
-                <li><a href="${path}" class="active">Home</a></li>
-                <li><a href="${path}/intro/list.do">회사소개</a></li>
-                <li><a href="${path}/notice/list.do">공지사항</a></li>
-                <li class="dropdown"><a href="#"><span>게시판</span> <i class="bi bi-chevron-down"></i></a>
-                    <ul>
-                        <li><a href="${path}/fileboard/list.do">자료실</a></li>
-                        <li><a href="${path}/community/list.do">커뮤니티</a></li>
-                        <li class="dropdown"><a href="#"><span>질문</span> <i class="bi bi-chevron-right"></i></a>
+                    <!-- Nav brand -->
+                    <a href="${path}/" class="nav-brand"><img src="${path}/resources/img/logo2.png" alt="해법 로고 이미지" style="width: 80%"></a>
+
+                    <!-- Navbar Toggler -->
+                    <div class="classy-navbar-toggler">
+                        <span class="navbarToggler"><span></span><span></span><span></span></span>
+                    </div>
+
+                    <!-- Menu -->
+                    <div class="classy-menu">
+
+                        <!-- Close Button -->
+                        <div class="classycloseIcon">
+                            <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                        </div>
+
+                        <!-- Nav Start -->
+                        <div class="classynav">
                             <ul>
-                                <li><a href="#">QnA</a></li>
-                                <li><a href="#">FAQ</a></li>
+                                <li><a href="${path}/lecture/list"> 강의 </a></li>
+                                <li><a href="${path}/notice/list"> 공지사항 </a></li>
+                                <li><a href="${path}/dataRoom/list"> 자료실 </a></li>
+
                             </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li><a href="${path}/lecture/home">강의</a></li>
-<%--                <li class="dropdown"><a href="#"><span>강의</span> <i class="bi bi-chevron-down"></i></a>--%>
-<%--                    <ul>--%>
-<%--                        <li><a href="#">국어</a></li>--%>
-<%--                        <li><a href="#">영어</a></li>--%>
-<%--                        <li><a href="#">수학</a></li>--%>
-<%--                    </ul>--%>
-<%--                </li>--%>
-                <li><a href="${path}/book/home">교재</a></li>
 
-            <c:if test="${sid eq null}">
-                <li><a href="${path}/user/login.do" class="getstarted">로그인</a></li>
-                <li><a href="${path}/user/term.do" class="btn-get-started">회원가입</a></li>
-            </c:if>
-                <c:if test="${sid ne null and sid ne 'admin'}">
-                    <li style="margin-left: 40px">${sid}님 환영합니다</li>
-                    <li><a href="${path}/user/logout.do" class="getstarted">로그아웃</a></li>
-                    <li><a href="${path}/user/login2.do" class="btn-get-started">마이페이지</a></li>
-                    <li><a href="${path}/user/lectureRoom.do" class="btn-get-started">내 강의실</a></li>
-                </c:if>
-                <c:if test="${sid ne null and sid eq 'admin'}">
-                    <li><a href="${path}/admin/adminList.do" class="getstarted">관리자페이지</a></li>
-                    <li><a href="${path}/user/logout.do" class="btn-get-started">로그아웃</a></li>
-                </c:if>
-
-            </ul>
-        </nav><!-- .navbar -->
-
+                            <!-- Login/Register & Cart Button -->
+                            <div class="login-register-cart-button d-flex align-items-center">
+                                <c:if test="${isTeacher}">
+                                    <a href="${path}/lectureAttend/teacherLecture">
+                                        <i class="fa-solid fa-chalkboard fa-xl mr-3" style="color: #fff"></i>
+                                    </a>
+                                </c:if>
+                                <!-- Login/Register -->
+                                <c:if test="${sid eq null}">
+                                    <div class="login-register-btn mr-50" style="margin-right: 10px!important;" >
+                                        <a href="${path}/user/term" class="btn btn-primary" style="background-color: #fff; color: #000; border: none;">회원가입</a>
+                                    </div>
+                                    <div class="login-register-btn mr-50">
+                                        <a href="${path}/user/login" class="btn btn-primary" style="background-color: #625e5e; color: #fff; border: none;">로그인</a>
+                                    </div>
+                                </c:if>
+                                <c:if test="${sid ne null && sid eq 'admin'}">
+                                    <div class="login-register-btn mr-50" style="margin-right: 10px!important;" >
+                                        <a href="${path}/admin/userMgmt" class="btn btn-primary" style="background-color: #fff; color: #000; border: none;">관리자페이지</a>
+                                    </div>
+                                    <div class="login-register-btn mr-50">
+                                        <a href="${path}/user/logout" class="btn btn-primary" style="background-color: #625e5e; color: #fff; border: none;">로그아웃</a>
+                                    </div>
+                                </c:if>
+                                <c:if test="${sid ne null && sid ne 'admin'}">
+                                    <div class="login-register-btn mr-50" style="margin-right: 10px!important;" >
+                                        <a href="${path}/user/myPage" class="btn btn-primary" style="background-color: #fff; color: #000; border: none;">내 정보</a>
+                                    </div>
+                                    <div class="login-register-btn mr-50">
+                                        <a href="${path}/user/logout" class="btn btn-primary" style="background-color: #625e5e; color: #fff; border: none;">로그아웃</a>
+                                    </div>
+                                </c:if>
+                            </div>
+                        </div>
+                        <!-- Nav End -->
+                    </div>
+                </nav>
+            </div>
+        </div>
     </div>
-</header><!-- End Header -->
+</header>

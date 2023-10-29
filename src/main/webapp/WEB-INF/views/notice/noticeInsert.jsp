@@ -1,75 +1,83 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>공지사항 글쓰기</title>
-    <jsp:include page="../setting/head.jsp"></jsp:include>
+    <jsp:include page="../layout/head.jsp"/>
+
+    <style>
+        input {
+            border-radius: 5px;
+            height: 35px;
+            border: 1px solid #cbcbcb;
+            width: 100%;
+        }
+        textarea {
+            resize: none;
+            width: 100%;
+            height: 400px;
+            border: 1px solid #cbcbcb;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-
-<!-- 헤더 영역 시작 -->
+<!-- 헤더 시작 -->
 <jsp:include page="../layout/header.jsp"/>
-<!-- 헤더 영역 끝 -->
-
-<!-- 배너 영역 시작 -->
-<br>
-<section id="breadcrumbs" class="breadcrumbs">
-    <div class="container" style="width: 80%">
-
-        <div class="d-flex justify-content-between align-items-center">
-            <h2>공지사항 추가하기</h2>
-            <ol>
-                <li><a href="${path}">Home</a></li>
-                <li>공지사항</li>
-            </ol>
-        </div>
+<!-- 헤더 끝 -->
+<!-- 브레드크럼 시작 -->
+<section class="breadcumb-area bg-img bg-overlay" style="background-image: url('${path}/resources/img/breadcrumb.jpg');">
+    <div class="bradcumbContent">
+        <p style="color: white; font-weight: bold; font-size:30px;">공지사항</p>
     </div>
 </section>
-<!-- 배너 영역 끝 -->
-
-
-<!-- 공지사항 글쓰기 시작 -->
-<div class="content" id="content" style="margin-top: 100px;">
-    <div class="container" style="margin-top: 20px;">
+<!-- 브레드크럼 끝 -->
+<section class="album-catagory section-padding-100-0">
+    <div class="course_details_area mb-5 mt-5">
         <div class="container">
-            <h2 class="title" style="margin: 30px auto;">공지사항 추가</h2>
-            <form action="${path }/notice/insert.do" method="post">
-                <div class="mb-3">
-                    <label class="form-label" for="title">제목</label>
-                    <input class="form-control" type="text" name="title" id="title">
-                </div>
-                <div class="mb-3">
-                    <label for="content" class="form-label">내용 입력</label>
-                    <textarea class="form-control" name="content" id="content" rows="3"></textarea>
-                </div>
-                <div class="col-auto">
-                    <a class="button" href="${path }/notice/list.do">목록으로</a>
-<%--                        <c:if test='${sid eq "admin"}'>--%>
-                    <input type="submit" class="link-primary" value="글 등록">
-<%--                        </c:if>--%>
+            <!-- 테이블 영역 시작 -->
+            <form action="${path}/notice/insert" method="post">
+                <div class="col-12">
+                    <div class="card w-100">
+                        <div class="card-body">
+                            <div class="table-responsive project-list">
+                                <table class="table project-table table-centered table-nowrap">
+                                    <tbody>
+                                    <tr>
+                                        <th class="text-center" style="vertical-align: middle; width: 15%;">제목</th>
+                                        <td><input type="text" id="title" name="title" placeholder="제목을 입력하세요" class="pl-2" required autofocus></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="6" style="font-size: 15px;">
+                                            <textarea name="content" id="content" cols="100" rows="8" maxlength="800" class="single-textarea" style="height: 400px; border: 1px solid #cbcbcb"></textarea>
+                                            <script>
+                                                $(document).ready(function () { $("#content").cleditor(); });
+                                            </script>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div class="btn-group float-right mr-3">
+                                    <a href="${path}/notice/list" class="btn btn-outline-dark">목록</a>
+                                    <input type="submit" class="btn btn-dark" style="height: 100%" value="등록">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
+        <!-- 테이블 영역 끝 -->
     </div>
-</div>
-<!-- 공지사항 글쓰기 끝 -->
-<br><br>
-<!-- 푸터 영영 시작 -->
+</section>
+<!-- 푸터 시작 -->
 <jsp:include page="../layout/footer.jsp"/>
-<!-- 푸터 영역 끝 -->
-
-<form action="#">
-    <button id="toTop" title="Go to top">
-        <i class="fas fa-angle-up"></i>
-    </button>
-</form>
+<!-- 푸터 끝 -->
 </body>
 </html>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.ed.haebeop.persistence.StudyInfoMapper">
+
+    <select id="getStudyList" resultType="integer">
+        SELECT s.ccode FROM studyInfo s JOIN curriculum c ON (s.ccode = c.ccode)
+        WHERE lcode = #{lcode} AND id = #{id} AND completed = 1
+    </select>
+
+    <select id="getStudyInfo" resultType="kr.ed.haebeop.domain.StudyInfo">
+        SELECT * FROM studyInfo WHERE ccode = #{ccode} and id = #{id}
+    </select>
+
+    <insert id="studyInfoInsert">
+        INSERT INTO studyInfo
+        VALUES(DEFAULT, #{ccode}, #{id}, #{studyTime}, #{completed})
+    </insert>
+
+    <update id="studyInfoEdit">
+        UPDATE studyInfo SET studyTime = #{studyTime}, completed = #{completed}
+        WHERE ccode = #{ccode} AND id = #{id}
+    </update>
+
+    <select id="getCount" resultType="integer">
+        SELECT NVL(SUM(studyTime),0) FROM studyInfo where id=#{id};
+    </select>
+
+</mapper>

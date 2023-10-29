@@ -1,84 +1,78 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
-<c:set var="path" value="${pageContext.request.contextPath}"/>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="path" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>로그인</title>
-    <script src="assets/js/main.js"></script>
+    <jsp:include page="../layout/head.jsp"/>
+    <style>
+        .chk_box { display: block; position: relative; padding-left: 25px; margin-bottom: 10px; cursor: pointer; font-size: 14px; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
 
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-    <!-- Custom Theme files -->
-    <link href="${path}/resources/css/join.css" rel="stylesheet" type="text/css" media="all" />
-    <!-- //Custom Theme files -->
-    <!-- web font -->
-    <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <jsp:include page="../setting/head.jsp"/>
+        /* 기본 체크박스 숨기기 */
+        .chk_box input[type="checkbox"] { display: none; }
+
+        /* 선택되지 않은 체크박스 스타일 꾸미기 */
+        .on { width: 20px; height: 20px; background: #ddd; position: absolute; top: 0; left: 0; border-radius: 5px}
+
+        /* 선택된 체크박스 스타일 꾸미기 */
+        .chk_box input[type="checkbox"]:checked + .on { background: #3D3D3D; }
+        .on:after { content: ""; position: absolute; display: none; }
+        .chk_box input[type="checkbox"]:checked + .on:after { display: block; }
+        .on:after { width: 6px; height: 10px; border: solid #fff; border-width: 0 2px 2px 0; -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); position: absolute; left: 6px; top: 2px; }
+    </style>
+    <c:if test="${not empty msg}">
+    <script>
+        $(document).ready(() => {
+            $("#msg").text("${msg}");
+        });
+    </script>
+    </c:if>
 </head>
-
 <body>
+<!-- 헤더 시작 -->
 <jsp:include page="../layout/header.jsp"/>
-<!-- 헤더 영역 시작 -->
-
-<!-- 헤더 영역 끝 -->
-
-<!-- 배너 영역 시작 -->
-<br>
-<section id="breadcrumbs" class="breadcrumbs">
+<!-- 헤더 끝 -->
+<!-- 브레드크럼 시작 -->
+<section class="breadcumb-area bg-img bg-overlay" style="background-image: url('${path}/resources/img/breadcrumb.jpg');">
+    <div class="bradcumbContent">
+        <p style="color: white; font-weight: bold; font-size:30px;">로그인</p>
+    </div>
+</section>
+<!-- 브레드크럼 끝 -->
+<!-- 로그인 시작 -->
+<section class="login-area section-padding-100">
     <div class="container">
-        <div class="d-flex justify-content-between align-items-center">
-            <h2>로그인</h2>
-            <ol>
-                <li><a href="${path}">Home</a></li>
-                <li>로그인</li>
-            </ol>
-        </div>
-    </div>
-</section><!-- End Breadcrumbs -->
-<br>
-<div class="main-w3layouts wrapper">
-    <h1>로그인</h1>
-    <div class="main-agileinfo">
-        <div class="agileits-top">
-            <form action="${path}/user/loginpro.do" method="post">
-                <input type="text" name="id" id="id" class="form-control" placeholder="아이디 입력">
-                <input type="password" name="pw" id="pw" class="form-control" placeholder="비밀번호 입력">
-
-                <div class="wthree-text">
-                    <label class="anim">
-                        <input type="checkbox" class="checkbox" name="saveId" value="save" ${checked}>
-                        <span>아이디 기억하기</span>
-                    </label>
-                    <div class="clear"> </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
+                <div class="login-content">
+                    <!-- Login Form -->
+                    <div class="login-form">
+                        <form action="${path}/user/login" method="post">
+                            <div class="form-group">
+                                <label for="id">아이디</label>
+                                <input type="text" class="form-control" id="id" name="id" aria-describedby="emailHelp" placeholder="아이디를 입력해주세요" value="${cookie.userID.value}">
+                            </div>
+                            <div class="form-group">
+                                <label for="pw">비밀번호</label>
+                                <input type="password" class="form-control" id="pw" name="pw" placeholder="비밀번호를 입력해 주세요">
+                                <p class="text-danger" id="msg"></p>
+                            </div>
+                            <button type="submit" class="btn oneMusic-btn mt-30">로그인</button>
+                        </form>
+                    </div>
                 </div>
-                <input type="submit" value="로그인">
-            </form>
-            <p>아이디가 없으신가요? <a href="${path}/user/term.do"> 가입하기 </a></p>
+            </div>
         </div>
     </div>
-    <!-- //copyright -->
-    <ul class="colorlib-bubbles">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
-</div>
+</section>
+<!-- 로그인 끝 -->
+<!-- 푸터 시작 -->
 <jsp:include page="../layout/footer.jsp"/>
+<!-- 푸터 끝 -->
 </body>
 </html>
