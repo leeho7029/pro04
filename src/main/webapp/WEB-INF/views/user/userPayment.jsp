@@ -46,14 +46,13 @@
     <!-- section1(delivery info) Start -->
     <div class="row" style="width: 80%; margin: 150px auto;">
         <div class="row" style="padding-left: 50px;">
-            <h4><i class="fa-solid fa-circle-info" style="color: #363535; padding-right: 15px;"></i>배송상태 안내</h4>
+            <h4>배송상태 안내</h4>
         </div>
         <div class="col-lg-12" style="display: flex;border-top: 2px solid darkgray; padding-top: 30px; border-bottom: 2px dashed lightgray;">
             <div class="col-xl-4 col-md-6" >
                 <div class="card bg-pattern">
                     <div class="card-body" style="height: 200px; border-right: 1px solid darkgray;">
                         <div class="float-left" style="text-align: center;  font-size: 40px; width: 100%;">
-                            <i class="fa-solid fa-box" style="color: #4a4c4f;"></i>
                         </div>
                         <p class="font-size-30 mt-0 pt-1" style="color: #000;font-weight: 500; font-size: 20px; text-align: center;">결제완료</p>
                         <h5 class="font-size-30 mt-0 pt-1" style="font-size: 15px; text-align: center;" >판매자가 주문을 확인하는 단계</h5>
@@ -64,7 +63,6 @@
                 <div class="card bg-pattern">
                     <div class="card-body" style="height: 200px; border-right: 1px solid darkgray;">
                         <div class="float-left" style="text-align: center;  font-size: 40px; width: 100%;">
-                            <i class="fa-solid fa-truck" style="color: #393a3c; "></i>
                         </div>
                         <p class="font-size-30 mt-0 pt-1" style="color: #000;font-weight: 500; font-size: 20px; text-align: center;">배송중</p>
                         <h5 class="font-size-30 mt-0 pt-1" style="font-size: 15px; text-align: center;" > 상품발송이 완료되어
@@ -76,7 +74,6 @@
                 <div class="card bg-pattern">
                     <div class="card-body" style="height: 200px; ">
                         <div class="float-left" style="text-align: center;  font-size: 40px; width: 100%;">
-                            <i class="fa-solid fa-square-check" style="color: #2e3033;"></i>
                         </div>
                         <p class="font-size-30 mt-0 pt-1" style="color: #000;font-weight: 500; font-size: 20px; text-align: center;">배송완료</p>
                         <h5 class="font-size-30 mt-0 pt-1" style="font-size: 15px; text-align: center;" >
@@ -86,7 +83,7 @@
             </div>
         </div>
         <div class="row" id="infoTel" style="padding-left: 50px; border-bottom: 2px solid darkgray;">
-            <h6><i class="fa-brands fa-whatsapp" style="color: #424243; padding-right: 15px;"></i>배송문의고객센터 : <a href="${path}/notice/list" style="text-decoration: none; color:#000;">02-123-5678 (클릭시 링크 이동)</a></h6>
+            <h6>배송문의고객센터 : <a href="${path}/notice/list" style="text-decoration: none; color:#000;">02-123-5678 (클릭시 링크 이동)</a></h6>
         </div>
     </div>
     <!-- section1(delivery info) End -->
@@ -94,7 +91,7 @@
     <!-- section2(payment table) Start -->
     <div class="row" style="width: 85%; margin: 0 auto; padding-bottom: 50px;">
         <div class="row" style="padding-left: 50px;">
-            <h4><i class="fa-solid fa-wallet" style="color: #343537; padding-right: 15px;"></i>결제완료 내역</h4>
+            <h4>결제완료 내역</h4>
         </div>
         <div class="card col-lg-12"  style="border-top: 1px solid darkgray; border-bottom: 1px solid darkgray;">
             <c:forEach var="payment" items="${paymentList}">

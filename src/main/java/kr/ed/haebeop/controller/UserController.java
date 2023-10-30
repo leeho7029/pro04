@@ -226,17 +226,19 @@ public class UserController {
 
         // 수강신청 목록 불러오기
         List<LectureVO> myLecture = registerService.myLectures(page);
+        System.out.println(myLecture);
         model.addAttribute("myLecture", myLecture);
+
 
         // 오프라인 수강신청 목록 불러오기
         List <PaymentVO> offLecture = paymentService.paymentList(page2);
         model.addAttribute("offLecture", offLecture);
-
+        System.out.println(offLecture);
         model.addAttribute("curPage", curPage);
         model.addAttribute("page", page);
         model.addAttribute("page2", page2);
 
-        return "/user/myPage";
+        return "/user/mypage";
     }
 
     @RequestMapping(value="payment", method=RequestMethod.GET)
@@ -269,7 +271,7 @@ public class UserController {
         model.addAttribute("curPage", curPage);
         model.addAttribute("page", page);
 
-        return "/user/userPayment";
+        return "/user/mypage";
     }
 
 }

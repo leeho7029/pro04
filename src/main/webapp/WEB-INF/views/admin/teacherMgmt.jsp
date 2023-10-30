@@ -23,48 +23,9 @@
 
     <div id="content-wrapper" class="d-flex flex-column">
         <div id="content">
-            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <ul class="navbar-nav ml-auto">
-                    <div class="topbar-divider d-none d-sm-block"></div>
 
-                    <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small"> 안녕하세요, 관리자님 </span>
-                            <img class="img-profile rounded-circle"
-                                 src="${path}/resources/img/adminProfile.svg">
-                        </a>
-                    </li>
-                </ul>
-            </nav>
             <div class="container-fluid" style="padding: 100px">
-                <div class="d-flex justify-content-end">
-                    <!-- 검색어 입력 부분 -->
-                    <form action="${path}/admin/teacherMgmt" method="get" class="w-50 mb-5">
-                        <div class="row">
-                            <div class="col mt-2">
-                                <select class="form-select" id="type" name="type">
-                                    <option value="T"> 강사명 </option>
-                                </select>
-                            </div>
-                            <div class="col-xl-8 col-lg-12 col-md-12 mt-2">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="keyword" name="keyword"
-                                           placeholder="검색어를 입력해주세요" autocomplete="off" aria-label="검색어를 입력해주세요"
-                                           aria-describedby="button-addon2" value="${page.keyword}">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-dark" type="submit" id="button-addon2"> 검색</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                <table class="table table-hover text-center">
+                <table class="table table-hover text-center" id="teacher-table">
                     <thead>
                     <tr>
                         <th width="100"> # </th>
@@ -137,5 +98,16 @@
 <script src="${path}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="${path}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 <script src="${path}/resources/js/sb-admin-2.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#teacher-table').DataTable({
+            "scrollY":        200,
+            "scrollCollapse": true
+        });
+    });
+</script>
 </body>
 </html>

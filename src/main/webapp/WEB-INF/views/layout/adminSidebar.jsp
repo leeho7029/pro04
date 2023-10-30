@@ -9,9 +9,6 @@
             <img src="${path}/resources/img/logo2.png" alt="해법 로고 이미지" style="width: 110px">
         </div>
     </a>
-    <div class="sidebar-heading">
-        Management
-    </div>
     <li class="nav-item">
         <a class="nav-link" href="${path}/admin/userMgmt">
             <span> 회원관리 </span></a>

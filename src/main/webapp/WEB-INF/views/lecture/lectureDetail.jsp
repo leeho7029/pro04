@@ -60,11 +60,9 @@
 <jsp:include page="../layout/header.jsp"/>
 <!-- 헤더 끝 -->
 <!-- 브레드크럼 시작 -->
-<section class="breadcumb-area bg-img bg-overlay"
-         style="background-image: url('${path}/resources/img/breadcrumb.jpg');">
+<section class="breadcumb-area bg-img bg-overlay" style="background-image: url('${path}/resources/img/breadcrumb.jpg');">
     <div class="bradcumbContent">
-        <p>해법과 함께 학습 여정을 시작해요</p>
-        <h2>강의실</h2>
+        <p style="color: white; font-weight: bold; font-size:30px;">강의실</p>
     </div>
 </section>
 <!-- 브레드크럼 끝 -->

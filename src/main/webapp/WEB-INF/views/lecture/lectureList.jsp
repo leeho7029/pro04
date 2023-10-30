@@ -136,7 +136,16 @@
                                                                     <h8>교재: 수능특강</h8><br>
                                                                     <h9>다운로드</h9><br>
                                                                     <span>접수기간 - ${lecture.sdate} ~ ${lecture.edate} | 접수상태:${lecture.state}</span>
-                                                                    <a href="${path}/lecture/register2?lcode=${lecture.lcode}" style="margin-left: 600px" class="btn btn-primary btn_L_col2 register"><span>수강신청</span></a>
+                                                                    <c:if test="${(lecture.bcode eq null && lecture.state eq 'off') || (lecture.bcode ne null && lecture.state eq 'on') || (lecture.bcode eq null && lecture.state eq 'on') }">
+                                                                        <a href="${path}/lecture/register2?lcode=${lecture.lcode}"
+                                                                           class="btn btn-primary btn_L_col2 register"><span>수강신청</span></a>
+                                                                    </c:if>
+                                                                    <c:if test="${lecture.bcode ne null && lecture.state eq 'off'}">
+                                                                        <a href="javascript:void(0);"
+                                                                           data-lcode="${lecture.lcode}, ${lecture.bcode}"
+                                                                           id="pay"
+                                                                           class="btn btn-primary btn_L_col2 register pay-button"><span>수강신청</span></a>
+                                                                    </c:if>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -214,8 +223,16 @@
                                                                     <h8>교재: 수능특강</h8><br>
                                                                     <h9>다운로드</h9><br>
                                                                     <span>접수기간 - ${lecture.sdate} ~ ${lecture.edate} | 접수상태:${lecture.state}</span>
-                                                                    <a href="${path}/lecture/register2?lcode=${lecture.lcode}" style="margin-left: 600px" class="btn btn-primary btn_L_col2 register"><span>수강신청</span></a>
-                                                                </div>
+                                                                    <c:if test="${(lecture.bcode eq null && lecture.state eq 'off') || (lecture.bcode ne null && lecture.state eq 'on') || (lecture.bcode eq null && lecture.state eq 'on') }">
+                                                                        <a href="${path}/lecture/register2?lcode=${lecture.lcode}"
+                                                                           class="btn btn-primary btn_L_col2 register"><span>수강신청</span></a>
+                                                                    </c:if>
+                                                                    <c:if test="${lecture.bcode ne null && lecture.state eq 'off'}">
+                                                                        <a href="javascript:void(0);"
+                                                                           data-lcode="${lecture.lcode}, ${lecture.bcode}"
+                                                                           id="pay"
+                                                                           class="btn btn-primary btn_L_col2 register pay-button"><span>수강신청</span></a>
+                                                                    </c:if>
                                                             </div>
                                                         </div>
                                                         <hr>
@@ -287,13 +304,22 @@
                                                             </div>
                                                             <div class="col-md-10 cont_wrap">
                                                                 <div class="txt_area">
-                                                                    <h7 class="tit">강사: ${lecture.tcode}</h7>
+                                                                    <h7 class="tit">강사: ${lecture.tname}</h7>
                                                                     <h6 class="tit"><a href="${path}/lecture/detail?lcode=${lecture.lcode}">${lecture.lname}</a></h6><br>
                                                                     <h8>수강인원 ${lecture.maxStudent}명</h8><br>
                                                                     <h8>교재: 수능특강</h8><br>
                                                                     <h9>다운로드</h9><br>
                                                                     <span>접수기간 - ${lecture.sdate} ~ ${lecture.edate} | 접수상태:${lecture.state}</span>
-                                                                    <a href="${path}/lecture/register2?lcode=${lecture.lcode}" style="margin-left: 600px" class="btn btn-primary btn_L_col2 register"><span>수강신청</span></a>
+                                                                    <c:if test="${(lecture.bcode eq null && lecture.state eq 'off') || (lecture.bcode ne null && lecture.state eq 'on') || (lecture.bcode eq null && lecture.state eq 'on') }">
+                                                                        <a href="${path}/lecture/register2?lcode=${lecture.lcode}"
+                                                                           class="btn btn-primary btn_L_col2 register"><span>수강신청</span></a>
+                                                                    </c:if>
+                                                                    <c:if test="${lecture.bcode ne null && lecture.state eq 'off'}">
+                                                                        <a href="javascript:void(0);"
+                                                                           data-lcode="${lecture.lcode}, ${lecture.bcode}"
+                                                                           id="pay"
+                                                                           class="btn btn-primary btn_L_col2 register pay-button"><span>수강신청</span></a>
+                                                                    </c:if>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -370,7 +396,16 @@
                                                                     <h8>교재: 수능특강</h8><br>
                                                                     <h9>다운로드</h9><br>
                                                                     <span>접수기간 - ${lecture.sdate} ~ ${lecture.edate} | 접수상태:${lecture.state}</span>
-                                                                    <a href="${path}/lecture/register2?lcode=${lecture.lcode}" style="margin-left: 600px" class="btn btn-primary btn_L_col2 register"><span>수강신청</span></a>
+                                                                    <c:if test="${(lecture.bcode eq null && lecture.state eq 'off') || (lecture.bcode ne null && lecture.state eq 'on') || (lecture.bcode eq null && lecture.state eq 'on') }">
+                                                                        <a href="${path}/lecture/register2?lcode=${lecture.lcode}"
+                                                                           class="btn btn-primary btn_L_col2 register"><span>수강신청</span></a>
+                                                                    </c:if>
+                                                                    <c:if test="${lecture.bcode ne null && lecture.state eq 'off'}">
+                                                                        <a href="javascript:void(0);"
+                                                                           data-lcode="${lecture.lcode}, ${lecture.bcode}"
+                                                                           id="pay"
+                                                                           class="btn btn-primary btn_L_col2 register pay-button"><span>수강신청</span></a>
+                                                                    </c:if>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -656,6 +691,55 @@
         }
 
         setInterval(toggleNeon, 500); // 1초 간격으로 번쩍이기
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $(".pay-button").click(function () {
+            var lcodeAndBcode = $(this).data("lcode").split(", ");
+            var lcode = lcodeAndBcode[0];
+            var bcode = lcodeAndBcode[1];
+
+            $.ajax({
+                type: "GET",
+                url: "${path}/payment/check?lcode=" + lcode,
+                success: function (data) {
+                    if (data.duplicate === 'false') {
+                        // 이미 등록된 경우 알림 메시지를 표시
+                        alert("이 강의에 이미 등록되었습니다.");
+                    } else if (data.loginRequired) {
+                        // 로그인이 필요한 경우 로그인 페이지로 리다이렉트
+                        alert("로그인이 필요합니다.");
+                        window.location.href = "${path}/user/login";
+                    } else {
+                        // 중복 신청이 아닌 경우 수강신청 요청을 보냅니다.
+                        $.ajax({
+                            type: "GET",
+                            url: "${path}/payment/pay?lcode=" + lcode + "&bcode=" + bcode,
+                            success: function (data) {
+                                $.ajax({
+                                    type: "GET",
+                                    url: "${path}/payment/payment?lcode=" + lcode + "&bcode=" + bcode,
+                                    success: function (registerData) {
+                                        window.location.href = "${path}/payment/payment?lcode=" + lcode + "&bcode=" + bcode;
+                                        console.log("payment 실행 완료");
+                                    },
+                                    error: function (registerError) {
+                                        console.log("에러다에러" + registerError.responseText);
+                                    }
+                                });
+                            },
+                            error: function (error) {
+                                console.log("에러다에러" + error.responseText);
+                            }
+                        });
+                    }
+                },
+                error: function (duplicateError) {
+                    console.log("중복 신청 확인 중 에러: " + duplicateError.responseText);
+                }
+            });
+        });
     });
 </script>
 

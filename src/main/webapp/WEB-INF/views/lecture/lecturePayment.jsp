@@ -35,9 +35,124 @@
 <!-- userPaymentDetail Start -->
 
 <!-- section1(payList table) Start -->
-<div class="row" style="width: 85%; margin: 100px auto; padding-bottom: 50px;">
+<div class="col" style="width: 85%; margin: 100px auto; padding-bottom: 50px;">
+    <div class="row" style="padding-left: 50px; margin-bottom: 30px;">
+        <h4>결제정보</h4>
+    </div>
+    <form action="${path}/payment/paymentPro" method="post" onsubmit="return payCheck(this)">
+        <div class="row" style="margin-bottom: 50px;">
+            <div class="col mb-3">
+                <div class="accordion" id="accordionPayment" style="width: 90%; margin: 0 auto;">
+                    <div class="accordion-item mb-3">
+                        <div id="collapseCC" class="accordion-collapse collapse show" data-bs-parent="#accordionPayment" style="">
+                            <div class="accordion-body">
+                                <div class="mb-3">
+                                    <label class="form-label">받는 사람 연락처</label>
+                                    <input type="tel" name="tel" id="tel" class="form-control" required>
+                                    <input type="hidden" name="name" id="name" value="${user.name }">
+                                    <input type="hidden" name="email" id="email" value="${user.email }">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">배송지 주소</label>
+                                    <input type="text" name="addr1" id="addr1" placeholder="기본 주소 입력" autocomplete="off" readonly class="form-control" required /><br>
+                                    <input type="text" name="addr2" id="addr2" placeholder="상세 주소 입력" autocomplete="off" required class="form-control" required /><br>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-9">
+                                        <div class="mb-3">
+                                            <input type="text" id="postcode" name="postcode" class="form-control" placeholder="우편번호" autocomplete="off" readonly >
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3" style="padding-left: 0;">
+                                        <div class="mb-3">
+                                            <button type="button" class="btn btn-dark"  onclick="findAddr()" style="width:100%;"> 우편번호 </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="checkout__input" >
+                                            <p class="form-label">결제수단</p>
+                                            <select class="form-control"  aria-label="Default select example" name="method" id="method" style="width: 100%;">
+                                                <option value="신용카드">신용카드</option>
+                                                <option value="체크카드">체크카드</option>
+                                                <option value="계좌이체">계좌이체</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="checkout__input" style="width: 100%">
+                                            <p class="form-label">결제사</p>
+                                            <select class="form-control" name="com" id="com" >
+                                                <option value="선택안함">선택안함</option>
+                                            </select>
+                                            <input type="hidden" name="com2" id="com2" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3" style="margin-top: 20px;">
+                                    <label class="form-label">결제 번호</label>
+                                    <input type="text" name="account" id="account" class="form-control" required>
+                                    <input type="hidden" name="payAmount" id="payAmount">
+                                    <input type="hidden" name="payCk" id="payCk" value="no">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-3 mb-3">
+                <div class="card position-sticky top-0">
+                    <div class="p-3 " id="paypay">
+                        <h5 class="card-title mb-3">결제금액</h5>
+                        <div style="display: flex; justify-content:space-between;">
+                            <span>상품금액</span>
+                            <span id="bprice">${book.bprice}</span>
+                        </div>
+                        <div style="display: flex; justify-content:space-between;">
+                            <span>포인트 </span>
+                            <div class="d-flex small">
+                                <input type="number" class="form-control" name="point" id="point" max="${user.pt}" min="0" style="width: 80px;" >
+                                <input type="button" id="pointApply" class="btn btn-secondary btn-sm" value ="적용" >
+                                <input type="hidden" name="pt" id="pt" value="" >
+                                <input type="hidden" name="title" id="title" value="${lecture.lname}외1" >
+                            </div>
+                        </div>
+                        <hr>
+                        <div>
+                            <div>
+                                <p style="display: flex; justify-content:space-between;">
+                                    <span>총금액</span> <strong class="text-dark" id="subprice"></strong>
+                                </p>
+                                <p style="display: flex; justify-content:space-between;">
+                                    <span></span> <strong class="text-dark" id="totalprice" ></strong>
+                                </p>
+                            </div>
+                        </div>
+                        <input type="button" id="pay" value="결제하기" class="btn btn-dark w-100" style="height: 80px;">
+                        <c:if test="${!empty sid }">
+                            <input type="hidden" id="lcode" name="lcode" value="${lecture.lcode }">
+                            <input type="hidden" id="lname" name="lname" value="${lecture.lname}">
+                            <input type="hidden" name="bcode" id="bcode" value="${lecture.bcode }">
+                            <input type="hidden" name="tcode" id="tcode" value="${lecture.tcode}">
+                            <input type="hidden" id="sprice" name="sprice" value="${book.bprice}">
+                            <input type="hidden" id="amount" name="amount" value="1">
+                            <input type="submit" class="btn btn-primary w-100 mt-2" value="구매" style="background-color: #4f5665;display: none;">
+                        </c:if>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+<!-- section1(payList table) End -->
+
+<!-- section2(payment & payInfo) Start -->
+<div class="col" style="width: 85%; margin: 0 auto; padding-bottom: 50px;">
     <div class="row" style="padding-left: 50px;">
-        <h4><i class="fa-solid fa-wallet" style="color: #343537; padding-right: 15px;"></i>주문상품</h4>
+        <h4>주문상품</h4>
     </div>
     <div class="col-lg-12" style="width: 100%;">
         <div class="card">
@@ -59,132 +174,18 @@
                             <td><strong> - </strong>${lecture.lprice}</td>
                             <td>0</td>
                         </tr>
-                            <tr>
-                                <th scope="row">${book.bname}</th>
-                                <td>${book.bprice}</td>
-                                <td>0</td>
-                                <td>${book.bprice}</td>
-                            </tr>
+                        <tr>
+                            <th scope="row">${book.bname}</th>
+                            <td>${book.bprice}</td>
+                            <td>0</td>
+                            <td>${book.bprice}</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- section1(payList table) End -->
-
-<!-- section2(payment & payInfo) Start -->
-<div class="col" style="width: 85%; margin: 0 auto; padding-bottom: 50px;">
-    <div class="row" style="padding-left: 50px; margin-bottom: 30px;">
-        <h4><i class="fa-solid fa-file-pen" style="color: #3d3d3e;"></i>결제정보</h4>
-    </div>
-    <form action="${path}/payment/paymentPro" method="post" onsubmit="return payCheck(this)">
-        <div class="row" style="margin-bottom: 50px;">
-        <div class="col mb-3">
-            <div class="accordion" id="accordionPayment" style="width: 90%; margin: 0 auto;">
-                <div class="accordion-item mb-3">
-                    <div id="collapseCC" class="accordion-collapse collapse show" data-bs-parent="#accordionPayment" style="">
-                        <div class="accordion-body">
-                            <div class="mb-3">
-                                <label class="form-label">받는 사람 연락처</label>
-                                <input type="tel" name="tel" id="tel" class="form-control" required>
-                                <input type="hidden" name="name" id="name" value="${user.name }">
-                                <input type="hidden" name="email" id="email" value="${user.email }">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">배송지 주소</label>
-                                <input type="text" name="addr1" id="addr1" placeholder="기본 주소 입력" autocomplete="off" readonly class="form-control" required /><br>
-                                <input type="text" name="addr2" id="addr2" placeholder="상세 주소 입력" autocomplete="off" required class="form-control" required /><br>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-9">
-                                    <div class="mb-3">
-                                        <input type="text" id="postcode" name="postcode" class="form-control" placeholder="우편번호" autocomplete="off" readonly >
-                                    </div>
-                                </div>
-                                <div class="col-lg-3" style="padding-left: 0;">
-                                    <div class="mb-3">
-                                        <button type="button" class="btn btn-dark"  onclick="findAddr()" style="width:100%;"> 우편번호 </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="checkout__input" >
-                                        <p class="form-label">결제수단</p>
-                                        <select class="form-control"  aria-label="Default select example" name="method" id="method" style="width: 100%;">
-                                            <option value="신용카드">신용카드</option>
-                                            <option value="체크카드">체크카드</option>
-                                            <option value="계좌이체">계좌이체</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="checkout__input" style="width: 100%">
-                                        <p class="form-label">결제사</p>
-                                        <select class="form-control" name="com" id="com" >
-                                            <option value="선택안함">선택안함</option>
-                                        </select>
-                                        <input type="hidden" name="com2" id="com2" value="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-3" style="margin-top: 20px;">
-                                <label class="form-label">결제 번호</label>
-                                <input type="text" name="account" id="account" class="form-control" required>
-                                <input type="hidden" name="payAmount" id="payAmount">
-                                <input type="hidden" name="payCk" id="payCk" value="no">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-md-3 mb-3">
-            <div class="card position-sticky top-0">
-                <div class="p-3 " id="paypay">
-                    <h5 class="card-title mb-3">결제금액</h5>
-                    <div style="display: flex; justify-content:space-between;">
-                        <span>상품금액</span>
-                        <span id="bprice">${book.bprice}</span>
-                    </div>
-                    <div style="display: flex; justify-content:space-between;">
-                        <span>포인트 </span>
-                        <div class="d-flex small">
-                             <input type="number" class="form-control" name="point" id="point" max="${user.pt}" min="0" style="width: 80px;" >
-                             <input type="button" id="pointApply" class="btn btn-secondary btn-sm" value ="적용" >
-                            <input type="hidden" name="pt" id="pt" value="" >
-                            <input type="hidden" name="title" id="title" value="${lecture.lname}외1" >
-                        </div>
-                    </div>
-                    <hr>
-                    <div>
-                        <div>
-                            <p style="display: flex; justify-content:space-between;">
-                                <span>총금액</span> <strong class="text-dark" id="subprice"></strong>
-                            </p>
-                            <p style="display: flex; justify-content:space-between;">
-                                <span></span> <strong class="text-dark" id="totalprice" ></strong>
-                            </p>
-                        </div>
-                    </div>
-                    <input type="button" id="pay" value="결제하기" class="btn btn-dark w-100" style="height: 80px;">
-                    <c:if test="${!empty sid }">
-                        <input type="hidden" id="lcode" name="lcode" value="${lecture.lcode }">
-                        <input type="hidden" id="lname" name="lname" value="${lecture.lname}">
-                        <input type="hidden" name="bcode" id="bcode" value="${lecture.bcode }">
-                        <input type="hidden" name="tcode" id="tcode" value="${lecture.tcode}">
-                        <input type="hidden" id="sprice" name="sprice" value="${book.bprice}">
-                        <input type="hidden" id="amount" name="amount" value="1">
-                        <input type="submit" class="btn btn-primary w-100 mt-2" value="구매" style="background-color: #4f5665;display: none;">
-                    </c:if>
-                </div>
-            </div>
-        </div>
-    </div>
-    </form>
     <script>
         $(document).ready(function(){
             var cardArr1 = ["현대카드","농협카드","BC카드","KB카드","신한카드"];
