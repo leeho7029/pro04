@@ -18,7 +18,6 @@ public interface LectureMapper {
     public int getCloseCount() throws Exception;
     public void closeLecture(Map<String, String> data) throws Exception;
     public void lectureEdit(Lecture dto) throws Exception;
-    public List<Category> categories() throws Exception;
     public int getCount(Page page) throws Exception;
     public int lectureCount() throws Exception;
     public List<Subject> subjects() throws Exception;

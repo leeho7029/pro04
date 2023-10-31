@@ -73,7 +73,7 @@
         <section>
             <div class="row">
                 <div class="col-md-2 img">
-                    <img src="${path}/resources/img/teacher/an.png" alt="사진"/>
+                    <img src="${pageContext.request.contextPath}/resources/upload/teacher/${teacher.saveFile}" alt="강사 이미지" class="rounded"/>
                 </div>
                 <div class="col-md-10 cont_wrap">
                     <div class="txt_area">

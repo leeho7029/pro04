@@ -126,7 +126,8 @@
                                                     <c:if test="${lecture.scode eq 'wr'}">
                                                         <div class="col-md-12 row" style="margin-bottom: 20px;">
                                                             <div class="col-md-2 img">
-                                                                <img src="${path}/resources/img/teacher/an.png" alt="사진"/>
+                                                                <img src="${pageContext.request.contextPath}/resources/upload/lecture/${lecture.saveFile}"
+                                                                     alt="사진"/>
                                                             </div>
                                                             <div class="col-md-10 cont_wrap">
                                                                 <div class="txt_area">
@@ -135,7 +136,7 @@
                                                                     <h8>수강인원 ${lecture.maxStudent}명</h8><br>
                                                                     <h8>교재: 수능특강</h8><br>
                                                                     <h9>다운로드</h9><br>
-                                                                    <span>접수기간 - ${lecture.sdate} ~ ${lecture.edate} | 접수상태:${lecture.state}</span>
+                                                                    <span>접수기간 - ${lecture.sdate} ~ ${lecture.edate} | 수업방식:${lecture.state}</span>
                                                                     <c:if test="${(lecture.bcode eq null && lecture.state eq 'off') || (lecture.bcode ne null && lecture.state eq 'on') || (lecture.bcode eq null && lecture.state eq 'on') }">
                                                                         <a href="${path}/lecture/register2?lcode=${lecture.lcode}"
                                                                            class="btn btn-primary btn_L_col2 register"><span>수강신청</span></a>
@@ -213,7 +214,8 @@
                                                     <c:if test="${lecture.scode eq 'ma'}">
                                                         <div class="col-md-12 row" style="margin-bottom: 20px;">
                                                             <div class="col-md-2 img">
-                                                                <img src="${pageContext.request.contextPath}/resources/upload/teacher/${lecture.saveFile}" alt="사진"/>
+                                                                <img src="${pageContext.request.contextPath}/resources/upload/lecture/${lecture.saveFile}"
+                                                                     alt="사진"/>
                                                             </div>
                                                             <div class="col-md-10 cont_wrap">
                                                                 <div class="txt_area">
@@ -222,7 +224,7 @@
                                                                     <h8>수강인원 ${lecture.maxStudent}명</h8><br>
                                                                     <h8>교재: 수능특강</h8><br>
                                                                     <h9>다운로드</h9><br>
-                                                                    <span>접수기간 - ${lecture.sdate} ~ ${lecture.edate} | 접수상태:${lecture.state}</span>
+                                                                    <span>접수기간 - ${lecture.sdate} ~ ${lecture.edate} | 수업방식:${lecture.state}</span>
                                                                     <c:if test="${(lecture.bcode eq null && lecture.state eq 'off') || (lecture.bcode ne null && lecture.state eq 'on') || (lecture.bcode eq null && lecture.state eq 'on') }">
                                                                         <a href="${path}/lecture/register2?lcode=${lecture.lcode}"
                                                                            class="btn btn-primary btn_L_col2 register"><span>수강신청</span></a>
@@ -300,7 +302,8 @@
                                                     <c:if test="${lecture.scode eq 'ko'}">
                                                         <div class="col-md-12 row" style="margin-bottom: 20px;">
                                                             <div class="col-md-2 img">
-                                                                <img src="${path}/resources/img/teacher/an.png" alt="사진"/>
+                                                                <img src="${pageContext.request.contextPath}/resources/upload/lecture/${lecture.saveFile}"
+                                                                     alt="사진"/>
                                                             </div>
                                                             <div class="col-md-10 cont_wrap">
                                                                 <div class="txt_area">
@@ -309,7 +312,7 @@
                                                                     <h8>수강인원 ${lecture.maxStudent}명</h8><br>
                                                                     <h8>교재: 수능특강</h8><br>
                                                                     <h9>다운로드</h9><br>
-                                                                    <span>접수기간 - ${lecture.sdate} ~ ${lecture.edate} | 접수상태:${lecture.state}</span>
+                                                                    <span>접수기간 - ${lecture.sdate} ~ ${lecture.edate} | 수업방식:${lecture.state}</span>
                                                                     <c:if test="${(lecture.bcode eq null && lecture.state eq 'off') || (lecture.bcode ne null && lecture.state eq 'on') || (lecture.bcode eq null && lecture.state eq 'on') }">
                                                                         <a href="${path}/lecture/register2?lcode=${lecture.lcode}"
                                                                            class="btn btn-primary btn_L_col2 register"><span>수강신청</span></a>
@@ -386,7 +389,8 @@
                                                     <c:if test="${lecture.scode eq 'ch'}">
                                                         <div class="col-md-12 row">
                                                             <div class="col-md-2 img" style="margin-bottom: 20px;">
-                                                                <img src="${path}/resources/img/teacher/an.png" alt="사진"/>
+                                                                <img src="${pageContext.request.contextPath}/resources/upload/lecture/${lecture.saveFile}"
+                                                                     alt="사진"/>
                                                             </div>
                                                             <div class="col-md-10 cont_wrap">
                                                                 <div class="txt_area">
@@ -395,7 +399,7 @@
                                                                     <h8>수강인원 ${lecture.maxStudent}명</h8><br>
                                                                     <h8>교재: 수능특강</h8><br>
                                                                     <h9>다운로드</h9><br>
-                                                                    <span>접수기간 - ${lecture.sdate} ~ ${lecture.edate} | 접수상태:${lecture.state}</span>
+                                                                    <span>접수기간 - ${lecture.sdate} ~ ${lecture.edate} | 수업방식:${lecture.state}</span>
                                                                     <c:if test="${(lecture.bcode eq null && lecture.state eq 'off') || (lecture.bcode ne null && lecture.state eq 'on') || (lecture.bcode eq null && lecture.state eq 'on') }">
                                                                         <a href="${path}/lecture/register2?lcode=${lecture.lcode}"
                                                                            class="btn btn-primary btn_L_col2 register"><span>수강신청</span></a>

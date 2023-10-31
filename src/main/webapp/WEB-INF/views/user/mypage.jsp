@@ -37,7 +37,7 @@
     </div>
 </div>
 <!--sidemenu End -->
-<div class="container-lg" style="margin: 100px auto; width: 85%;">
+<div class="row" style="width: 85%; margin: 0 auto; padding-bottom: 50px;">
     <!-- section1(info) Start-->
     <div class="row" style="width: 90%; margin: 150px auto;">
         <div class="row">

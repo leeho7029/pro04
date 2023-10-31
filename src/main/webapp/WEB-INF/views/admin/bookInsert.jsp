@@ -30,10 +30,6 @@
                 <h2> 새로운 교재 등록 </h2>
                 <form action="${path}/admin/bookInsert" method="post" enctype="multipart/form-data">
                     <div class="form-group mt-3">
-                        <label for="bcode"> 교재코드 </label>
-                        <input type="text" name="bcode" id="bcode" class="form-control" autocomplete="off" required>
-                    </div>
-                    <div class="form-group mt-3">
                         <label for="bname"> 교재명 </label>
                         <input type="text" name="bname" id="bname" class="form-control" autocomplete="off" required>
                     </div>
@@ -53,7 +49,6 @@
                         <button type="submit" class="btn btn-dark"> 등록하기 </button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>

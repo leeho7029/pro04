@@ -34,8 +34,7 @@ public class UserController {
     private RegisterService registerService;
     @Autowired
     private HttpSession session;
-    @Autowired
-    private ReviewService reviewService;
+
     @Autowired
     private StudyInfoService studyInfoService;
     @Autowired

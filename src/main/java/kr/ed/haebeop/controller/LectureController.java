@@ -32,8 +32,6 @@ public class LectureController {
     @Autowired
     private CurriculumService curriculumService;
     @Autowired
-    private ReviewService reviewService;
-    @Autowired
     private RegisterService registerService;
     @Autowired
     private UserService userService;
@@ -114,8 +112,6 @@ public class LectureController {
         LectureVO lecture = lectureService.lectureDetail(lcode);
         Teacher teacher = teacherService.teacherDetailWithname(lecture.getTname());
         List<Curriculum> curriculumList = curriculumService.curriculumList(page);
-        List<Review> reviewList = reviewService.reviewList("new", lcode);
-        int starAvg = reviewService.starAvg(lcode);
         boolean isReg = registerService.isReg(lcode, sid);
 
         int total2 = lecBoardService.getCount(page);
@@ -134,8 +130,6 @@ public class LectureController {
         model.addAttribute("lecture", lecture);
         model.addAttribute("teacher", teacher);
         model.addAttribute("curriculumList", curriculumList);
-        model.addAttribute("reviewList", reviewList);
-        model.addAttribute("starAvg", starAvg);
         model.addAttribute("isReg", isReg);
         model.addAttribute("page", page);
         model.addAttribute("curPage", curPage);
@@ -143,59 +137,6 @@ public class LectureController {
         return "/lecture/lectureDetail";
     }
 
-    @RequestMapping(value="changeReview", method= RequestMethod.POST)
-    @ResponseBody
-    public void changeReview(@RequestParam String type, @RequestParam String lcode, HttpServletResponse response, Model model) throws Exception {
-        List<Review> reviewList = reviewService.reviewList(type, lcode);
-
-        JSONArray jsonArray = new JSONArray();
-        for(Review review : reviewList) {
-            JSONObject obj = new JSONObject();
-            obj.put("id", review.getId());
-            obj.put("star", review.getStar());
-            obj.put("content", review.getContent());
-            jsonArray.put(obj);
-        }
-
-        PrintWriter out = response.getWriter();
-        out.println(jsonArray);
-    }
-
-    @RequestMapping(value="reviewInsert", method=RequestMethod.POST)
-    public String reviewInsert(Review review, HttpServletRequest request, Model model) throws Exception {
-        HttpSession session = request.getSession();
-        review.setId((String) session.getAttribute("sid"));
-        reviewService.reviewInsert(review);
-        String lcode = request.getParameter("lcode");
-        return  "redirect:/lecture/review?lcode="+lcode;
-
-    }
-    @GetMapping("review")
-    public String review(@RequestParam String lcode, HttpServletRequest request, Model model) throws Exception {
-        int curPage = request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1;
-        LecturePage page = new LecturePage();
-        page.setLcode(lcode);
-        HttpSession session = request.getSession();
-        String sid = (String) session.getAttribute("sid");
-        User user = userService.getUser((String) session.getAttribute("sid"));
-        LectureVO lecture = lectureService.lectureDetail(lcode);
-        model.addAttribute("lecture", lecture);
-        model.addAttribute("user", user);
-        List<Review> reviewList = reviewService.reviewList("new", lcode);
-        int starAvg = reviewService.starAvg(lcode);
-        boolean isReg = registerService.isReg(lcode, sid);
-
-        int total2 = lecBoardService.getCount(page);
-        page.makeBlock(curPage, total2);
-        page.makeLastPageNum(total2);
-        page.makePostStart(curPage, total2);
-        model.addAttribute("reviewList", reviewList);
-        model.addAttribute("starAvg", starAvg);
-        model.addAttribute("isReg", isReg);
-        model.addAttribute("page", page);
-        model.addAttribute("curPage", curPage);
-        return "/lecture/review";
-    }
 
     @GetMapping("register")
     public String register(@RequestParam String lcode, HttpServletRequest request, Model model) throws Exception {

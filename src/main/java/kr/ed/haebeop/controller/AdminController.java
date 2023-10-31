@@ -32,20 +32,6 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
-
-
-    @Autowired
-    private BoardService boardService;
-
-    @Autowired
-    private QnaService qnaService;
-
-
-    @Autowired
-    private FilterWordService filterWordService;
-
-
-
     @Autowired
     private LectureService lectureService;
 
@@ -67,29 +53,6 @@ public class AdminController {
     @Autowired
     private PaymentService paymentService;
 
-    @RequestMapping("dashboard")
-    public String dashboard(Model model) throws Exception {
-        // 포인트로 얻은 이익 계산
-        int profitPt = registerService.calcProfitPt();
-        model.addAttribute("profitPt", profitPt);
-
-        // 도서 판매로 얻은 이익 계산
-        int profitBook = paymentService.calcProfitBook();
-        model.addAttribute("profitBook", profitBook);
-
-        // 회원 중 수강신청한 사람 비율
-        double regPercent = registerService.calcRegPercent();
-        model.addAttribute("regPercent", regPercent);
-
-        // 커뮤니티 게시글 개수
-        int boardCnt = boardService.getCount();
-        model.addAttribute("boardCnt", boardCnt);
-
-        // 현재 진행 중인 이벤트 리스트
-
-        return "/admin/dashboard";
-    }
-
     @PostMapping("getUserCnt")
     public void getUserCnt(HttpServletResponse response) throws Exception {
         // 월별 회원 수 추이
@@ -107,22 +70,7 @@ public class AdminController {
 
     }
 
-    @PostMapping("getCateBoardCnt")
-    public void getCateBoardCnt(HttpServletResponse response) throws Exception {
-        // 카테고리 별 게시글 수
-        List<Map<String, Integer>> boardCntList = boardService.getCateBoardCnt();
 
-        JSONArray jsonArray = new JSONArray();
-        for(Map<String, Integer> boardCnt : boardCntList) {
-            JSONObject obj = new JSONObject();
-            obj.put("cateName", boardCnt.get("cateName"));
-            obj.put("cnt", boardCnt.get("cnt"));
-            jsonArray.put(obj);
-        }
-        PrintWriter out = response.getWriter();
-        out.println(jsonArray);
-
-    }
 
     @GetMapping("userMgmt")
     public String userMgmt(HttpServletRequest request, Model model) throws Exception {
@@ -152,26 +100,6 @@ public class AdminController {
         rttr.addFlashAttribute("msg", id);
         return "redirect:/admin/userMgmt";
     }
-
-    @GetMapping("qnaMgmt")
-    public String qnaMgmt(HttpServletRequest request, Model model) throws Exception {
-        //Page
-        int curPage = request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1;
-        Page page = new Page();
-        int total = qnaService.noAnswerCount(page);
-
-        page.makeBlock(curPage, total);
-        page.makeLastPageNum(total);
-        page.makePostStart(curPage, total);
-        model.addAttribute("curPage", curPage);     // 현재 페이지
-        model.addAttribute("page", page);           // 페이징 데이터
-
-        //QnaList
-        List<Qna> noAnswerList = qnaService.noAnswerList(page);
-        model.addAttribute("noAnswerList", noAnswerList);     //QnA 목록
-        return "/admin/qnaMgmt";
-    }
-
 
 
     @GetMapping("lectureMgmt")
